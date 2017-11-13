@@ -1,4 +1,4 @@
-"""Define the Board and Cell classes."""
+"""Define the Board and PracticeBoard classes."""
 
 # from random import randint
 from copy import deepcopy
@@ -64,7 +64,6 @@ class Board(object):
         x, y = coords[0] - 1, coords[1] - 1
         self.state[oy][ox], self.state[y][x] = self.state[y][x], self.state[oy][ox]
         self.open_cell_coords = coords
-        print('after', self.state)
 
         self._determine_legal_moves(coords)
 
@@ -107,16 +106,19 @@ class Board(object):
             self.slide(potential_move)
             self.previous_states.append(deepcopy(self.state))
 
+    def generate_board_states(self, num_of_moves, attempts, size=3):
+        """From a solved board, make a number of random moves, and save unique states."""
+        dict = {}
 
-def generate_board_states(num_of_moves, attempts, size=3):
-    """From a solved board, make a number of random moves, and save unique states."""
-    for i in range(attempts):
-        board = Board(size)
+        for i in range(attempts):
+            board = Board(size)
 
-        for j in range(num_of_moves):
-            board._make_random_move()
+            for j in range(num_of_moves):
+                board._make_random_move()
 
-        print()
+            dict.setdefault(str(deepcopy(board.state)), num_of_moves)
 
-if __name__ == "__main__":
-    generate_board_states(30, 5)
+        return dict
+
+# if __name__ == "__main__":
+#     generate_board_states(30, 5)
