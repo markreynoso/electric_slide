@@ -57,13 +57,11 @@ class Board(object):
 
     def slide(self, coords):
         """Slide the tile at the given coordinates into the open cell."""
-        print(self.state)
+        print('before', self.state)
         self.previous_states.append(self.state)
-        tile_to_move = coords[0] + self.size * (coords[1] - 1)
-        self.state[self.open_cell_coords[1] - 1][self.open_cell_coords[0] - 1] = tile_to_move
-        self.state[coords[1] - 1][coords[0] - 1] = self.size ** 2
+        self.state[self.open_cell_coords[1] - 1][self.open_cell_coords[0] - 1], self.state[coords[1] - 1][coords[0] - 1] = self.state[coords[1] - 1][coords[0] - 1], self.state[self.open_cell_coords[1] - 1][self.open_cell_coords[0] - 1]
         self.open_cell_coords = coords
-        print(self.state)
+        print('after', self.state)
 
         self._determine_legal_moves(coords)
 
