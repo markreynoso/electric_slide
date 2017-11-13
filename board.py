@@ -1,6 +1,7 @@
 """Define the Board and Cell classes."""
 
-from random import randint
+# from random import randint
+from random import choice
 
 
 class PracticeBoard(object):
@@ -58,7 +59,7 @@ class Board(object):
         """Slide the tile at the given coordinates into the open cell."""
         print(self.state)
         self.previous_states.append(self.state)
-        tile_to_move = self._tile_at_coords(coords)
+        tile_to_move = coords[0] + self.size * (coords[1] - 1)
         self.state[self.open_cell_coords[1] - 1][self.open_cell_coords[0] - 1] = tile_to_move
         self.state[coords[1] - 1][coords[0] - 1] = self.size ** 2
         self.open_cell_coords = coords
@@ -90,7 +91,9 @@ class Board(object):
         """Make a random move. Moves which would result in a previous state are disallowed."""
         check_board = PracticeBoard(self.state, self.open_cell_coords, self.size)
 
-        potential_move = self.legal_moves[randint(0, len(self.legal_moves) - 1)]
+        # potential_move = self.legal_moves[randint(0, len(self.legal_moves) - 1)]
+
+        potential_move = choice(self.legal_moves)
 
         if check_board.practice_slide(potential_move) in self.previous_states:
             self.legal_moves.remove(potential_move)
