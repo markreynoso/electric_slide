@@ -101,3 +101,17 @@ def test_slide_swaps_tiles_horizontally_reverse(sol_board):
     sol_board.slide((2, 3))
     sol_board.slide((3, 3))
     assert sol_board.state == [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+
+def test_slide_swaps_tiles_horizontally_then_vertically(sol_board):
+    """Test that slide moves tiles correctly horiz then vert."""
+    sol_board.slide((2, 3))
+    sol_board.slide((2, 2))
+    assert sol_board.state == [[1, 2, 3], [4, 9, 6], [7, 5, 8]]
+
+
+def test_slide_swaps_tiles_vertically_then_horizontally(sol_board):
+    """Test that slide moves tiles correctly horiz then vert."""
+    sol_board.slide((3, 2))
+    sol_board.slide((2, 2))
+    assert sol_board.state == [[1, 2, 3], [4, 9, 5], [7, 8, 6]]

@@ -20,7 +20,9 @@ class PracticeBoard(object):
 
     def practice_slide(self, coords):
         """Slide the tile at the given coordinates into the open cell."""
-        self.practice_state[self.practice_open_cell_coords[1] - 1][self.practice_open_cell_coords[0] - 1], self.practice_state[coords[1] - 1][coords[0] - 1] = self.practice_state[coords[1] - 1][coords[0] - 1], self.practice_state[self.practice_open_cell_coords[1] - 1][self.practice_open_cell_coords[0] - 1]
+        ox, oy = self.practice_open_cell_coords[0] - 1, self.practice_open_cell_coords[1] - 1
+        x, y = coords[0] - 1, coords[1] - 1
+        self.practice_state[oy][ox], self.practice_state[y][x] = self.practice_state[y][x], self.practice_state[oy][ox]
         self.practice_open_cell_coords = coords
 
         return self.practice_state
@@ -58,7 +60,9 @@ class Board(object):
     def slide(self, coords):
         """Slide the tile at the given coordinates into the open cell."""
         self.previous_states.append(self.state)
-        self.state[self.open_cell_coords[1] - 1][self.open_cell_coords[0] - 1], self.state[coords[1] - 1][coords[0] - 1] = self.state[coords[1] - 1][coords[0] - 1], self.state[self.open_cell_coords[1] - 1][self.open_cell_coords[0] - 1]
+        ox, oy = self.open_cell_coords[0] - 1, self.open_cell_coords[1] - 1
+        x, y = coords[0] - 1, coords[1] - 1
+        self.state[oy][ox], self.state[y][x] = self.state[y][x], self.state[oy][ox]
         self.open_cell_coords = coords
         print('after', self.state)
 
