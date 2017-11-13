@@ -2,21 +2,21 @@ var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
 var pkg = require('./package.json');
 
-// Copy vendor files from /node_modules into /vendor
+// Copy vendor files from / into /vendor
 // NOTE: requires `npm install` before running!
 gulp.task('copy', function() {
   gulp.src([
-      'node_modules/bootstrap/dist/**/*',
+      '/bootstrap/dist/**/*',
       '!**/npm.js',
       '!**/bootstrap-theme.*',
       '!**/*.map'
     ])
     .pipe(gulp.dest('vendor/bootstrap'))
 
-  gulp.src(['node_modules/jquery/dist/jquery.js', 'node_modules/jquery/dist/jquery.min.js'])
+  gulp.src(['/jquery/dist/jquery.js', '/jquery/dist/jquery.min.js'])
     .pipe(gulp.dest('vendor/jquery'))
 
-  gulp.src(['node_modules/popper.js/dist/umd/popper.js', 'node_modules/popper.js/dist/umd/popper.min.js'])
+  gulp.src(['/popper.js/dist/umd/popper.js', '/popper.js/dist/umd/popper.min.js'])
     .pipe(gulp.dest('vendor/popper'))
 })
 
