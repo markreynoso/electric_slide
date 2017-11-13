@@ -5,10 +5,10 @@ const APP = EXPRESS();
 const PORT = process.env.PORT || 3000;
 const requestProxy = require('express-request-proxy');
 
-APP.use(EXPRESS.static('startbootstrap-business-casual/vendor'));
+APP.use(EXPRESS.static('startbootstrap-business-casual/'));
 
 APP.get('/', function(request, response){
-  response.sendFile('index.html', {root: 'startbootstrap-business-casual/vendor'});
+  response.sendFile('index.html', {root: 'startbootstrap-business-casual/'});
 })
 // APP.get('/portfolio', function(request, response){
 //   response.sendFile('index.html', {root: './public'});
@@ -18,9 +18,9 @@ APP.get('/', function(request, response){
 // })
 // APP.get('/github/*', sendTheGit);
 
-APP.get('*', function(request, response){
-  response.sendFile('404.html', {root: './public'});
-})
+// APP.get('*', function(request, response){
+//   response.sendFile('404.html', {root: './public'});
+// })
 
 APP.listen(PORT, function(){
   console.log(`Express server currently running on port ${PORT}`);
