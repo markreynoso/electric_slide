@@ -39,7 +39,9 @@
   ],
   "dependencies": {
     "bootstrap": "^4.0.0-beta",
+    "express": "^4.16.2",
     "jquery": "^3.2.1",
+    "node": "^9.1.0",
     "popper.js": "1.12.3"
   },
   "deprecated": false,
