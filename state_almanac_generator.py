@@ -3,14 +3,13 @@ number of ideal moves that state is from a solved state."""
 
 from board import Board
 from copy import deepcopy
+import json
 
-state_almanac = {
-    '[[1, 2, 3], [4, 5, 9], [7, 8, 6]]': 1,
-    '[[1, 2, 3], [4, 5, 6], [7, 9, 8]]': 1,
-
-}
 
 generator_board = Board()
+
+
+state_almanac = {}
 
 
 def generate_board_states(num_of_moves, attempts, size=3):
@@ -22,11 +21,16 @@ def generate_board_states(num_of_moves, attempts, size=3):
             board._make_random_move()
 
         state_almanac.setdefault(str(deepcopy(board.state)), num_of_moves)
+        with open('state_almanac_data.json', 'w') as file:
+            json.dump(state_almanac, file)
 
 
 if __name__ == "__main__":
 
-    for i in range(10):
-        generate_board_states(i + 1, (i + 3) ** (i + 2))
+    with open('state_almanac_data.json') as file:
+        state_almanac = json.load(file)
 
-        print(len(state_almanac))
+    # for i in range(1):
+    generate_board_states(8, 300000)
+
+    print(len(state_almanac))
