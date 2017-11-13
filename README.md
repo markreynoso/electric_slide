@@ -1,8 +1,8 @@
 # electric_slide
 
-**Author**: Nathan Moore, Mark Reynoso, Megan Flood, Joseph Kim
+**Authors**: Nathan Moore, Mark Reynoso, Megan Flood, Joseph Kim
 
-**Version**: 0.0.0
+**Version**: 0.0.1
 
 ## Overview
 Electric_slide implements machine learning to efficiently solve the classic [sliding puzzle.](https://en.wikipedia.org/wiki/Sliding_puzzle)
@@ -16,7 +16,7 @@ pip install electric_slide
 ```
 
 ## Resources
-- ?????????
+- prestoj - https://github.com/prestoj/15-puzzle/blob/master/neural_network.py.
 
 ## Architecture
 - Written in Python
