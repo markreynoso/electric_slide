@@ -22,10 +22,11 @@ class PracticeBoard(object):
         """Slide the tile at the given coordinates into the open cell."""
         ox, oy = self.practice_open_cell_coords[0] - 1, self.practice_open_cell_coords[1] - 1
         x, y = coords[0] - 1, coords[1] - 1
-        self.practice_state[oy][ox], self.practice_state[y][x] = self.practice_state[y][x], self.practice_state[oy][ox]
-        self.practice_open_cell_coords = coords
+        practice_copy = deepcopy(self.practice_state)
+        practice_copy[oy][ox], practice_copy[y][x] = practice_copy[y][x], practice_copy[oy][ox]
+        # self.practice_open_cell_coords = coords
 
-        return self.practice_state
+        return practice_copy
 
     def determine_legal_moves(self):
         """Fill the list of legal moves."""
@@ -164,8 +165,8 @@ class Board(object):
         while self.moves_from_solved:
             for move in self.legal_moves:
                 p_board = PracticeBoard(self.state, self.open_cell_coords, self.size)
-                p_board.practice_slide(move)
-                if self.moves_from_solved - state_almanac[str(p_board.practice_state)] == 1:
+                # p_board.practice_slide(move)
+                if self.moves_from_solved - state_almanac[str(p_board.practice_slide(move))] == 1:
                     self.slide(move)
                     self.moves_from_solved -= 1
                     print(self.state[0])
