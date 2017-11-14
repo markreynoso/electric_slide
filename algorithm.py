@@ -1,7 +1,7 @@
 """."""
 
-from board import Board, PracticeBoard
 from priority_q import PriorityQ, Node
+
 
 def manhattan_distance(board_state, size=3):
     """Sum up the manhattan distance of all numbers in the board."""
@@ -18,4 +18,18 @@ def a_star(starting_state, heuristic=manhattan_distance):
     available = PriorityQ()
     curr = Node(starting_state, None, None)
     visited = {curr}
-    while
+    while heuristic(curr.state):  # heuristic is non-zero when unsolved
+        for move in curr.legal_moves():
+            move_state = curr.board.practice_slide(move)
+            node = Node(move_state, move, curr)
+            value = heuristic(node.state) + len(node.path())
+            if available.priority(node) is None and node not in visited:
+                available.push(node, value)
+            elif node not in visited:
+                p = available.priority(node)
+                if p > value:
+                    available.remove(node, p)
+                    available.push(node, value)
+        curr = available.pop()
+        visited.add(curr)
+    return curr.path()
