@@ -6,10 +6,10 @@ from priority_q import PriorityQ, Node
 def manhattan_distance(board_state, size=3):
     """Sum up the manhattan distance of all numbers in the board."""
     diff = 0
-    for y in range(1, size + 1):
-        for x in range(1, size + 1):
+    for y in range(size):
+        for x in range(size):
             idx = board_state[y][x] - 1
-            diff += abs((idx % size + 1, idx / size + 1) - (x, y))
+            diff += abs(idx % size - x) + abs(idx / size - y)
     return diff
 
 
@@ -17,7 +17,7 @@ def a_star(starting_state, heuristic=manhattan_distance):
     """Find a solution path by exploring possible boards based on heuristic value."""
     available = PriorityQ()
     curr = Node(starting_state, None, None)
-    visited = {curr}
+    visited = [curr]
     while heuristic(curr.state):  # heuristic is non-zero when unsolved
         for move in curr.legal_moves():
             move_state = curr.board.practice_slide(move)
@@ -31,5 +31,8 @@ def a_star(starting_state, heuristic=manhattan_distance):
                     available.remove(node, p)
                     available.push(node, value)
         curr = available.pop()
-        visited.add(curr)
+        visited.append(curr)
     return curr.path()
+
+if __name__ == '__main__':
+    print(a_star([[1,2,3],[4,9,8],[7,6,5]]))

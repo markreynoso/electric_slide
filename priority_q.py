@@ -15,7 +15,7 @@ class Node(object):
         self.move = move
         self.prev = prev
 
-        flat = [val for row in self.state for val in row]
+        flat = [val for row in state for val in row]
         empty = flat.index(9)
         coords = (empty % 3 + 1, empty // 3 + 1)
         self.board = PracticeBoard(state, coords, len(state))
@@ -60,7 +60,11 @@ class PriorityQ(object):
 
     def pop(self):
         """Remove the highest prioirty item from the queue."""
-        return self.values[min(self.values)].pop()
+        min_p = min(self.values)
+        result = self.values[min_p].pop()
+        if not self.values[min_p]:
+            del self.values[min_p]
+        return result
 
     def priority(self, item):
         """Find the priority of the given item."""
