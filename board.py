@@ -160,6 +160,8 @@ class Board(object):
         with open("state_almanac_data.json") as f:
             state_almanac = json.load(f)
 
+        print(len(state_almanac))
+
         self.moves_from_solved = state_almanac[str(self.state)]
 
         while self.moves_from_solved:
@@ -179,5 +181,6 @@ class Board(object):
 
 
 if __name__ == "__main__":
+    print()
     b = Board()
     b.solve([[1, 2, 9], [8, 5, 3], [4, 7, 6]])

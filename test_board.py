@@ -1,5 +1,7 @@
 """Tests for the board module."""
 
+from copy import deepcopy
+
 import pytest
 
 
@@ -121,3 +123,21 @@ def test_make_random_move_results_in_new_state(sol_board):
     """Test that make random move does not return current state."""
     sol_board._make_random_move()
     assert sol_board.state != [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+
+def test_make_random_move_changes_state(sol_board):
+    """Test make random move changes board to a new state."""
+    state = str(sol_board.state)
+    for i in range(20):
+        sol_board._make_random_move()
+        assert str(sol_board.state) != state
+        state = str(sol_board.state)
+
+
+def test_make_random_move_does_not_return_to_previous_state(sol_board):
+    """Test make random move does not return a previous board state."""
+    previous = str(sol_board.previous_states)
+    for i in range(20):
+        sol_board._make_random_move()
+        assert str(sol_board.state) not in previous
+        previous = str(sol_board.previous_states)
