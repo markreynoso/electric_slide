@@ -66,6 +66,18 @@ def test_astar_correctly_solves_complexity_2(scrambled_board_complexity_2):
     assert len(a_star(scrambled_board_complexity_2)) == 3
 
 
+def test_astar_correcty_solves_complexity_17():
+    """Test that astar solves correctly for high heuristic values."""
+    from algorithm import a_star
+    assert a_star([[5, 1, 3], [8, 2, 4], [7, 9, 6]])
+
+
+def test_astar_correcty_solves_complexity_25():
+    """Test that astar solves correctly for high heuristic values."""
+    from algorithm import a_star
+    assert a_star([[6, 1, 5], [7, 2, 9], [3, 8, 4]])
+
+
 # The test below is for the most complex board state, which it passes, but takes a long time
 # def test_astar_correcty_solves_complexity_31():
 #     """Test that astar solves correctly for high heuristic values."""
