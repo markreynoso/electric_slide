@@ -12,9 +12,8 @@ def solved_board():
 @pytest.fixture
 def n0():
     """A starting Node."""
-    from test_priority_q import START_STATE
     from priority_q import Node
-    return Node(START_STATE, None, None)
+    return Node([[1, 2, 3], [4, 5, 6], [7, 8, 9]], None, None)
 
 
 @pytest.fixture

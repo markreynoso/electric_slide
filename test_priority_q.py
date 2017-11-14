@@ -3,16 +3,13 @@
 import pytest
 
 
-START_STATE = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-
-
 def test_construct_a_new_start_node():
     """Test that a starting node can be constructed."""
     from priority_q import Node
-    n = Node(START_STATE, None, None)
+    n = Node([[1, 2, 3], [4, 5, 6], [7, 8, 9]], None, None)
     assert n.move is None
     assert n.prev is None
-    assert n.state == START_STATE
+    assert n.state == [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 
 
 def test_construct_a_new_child_node_after_start(n0):
