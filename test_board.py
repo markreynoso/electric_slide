@@ -8,6 +8,8 @@ from random import choice
 
 import json
 
+from board import PracticeBoard
+
 
 @pytest.fixture
 def sol_board():
@@ -180,3 +182,41 @@ def test_solve_solves_board_ideally(sol_board, state):
     random_starting_state = state
     ideal_num_of_moves = state_almanac[str(state)]
     assert sol_board.solve(random_starting_state) == ideal_num_of_moves
+
+
+def test_empty_constructor_makes_pboard_error():
+    """Test that the PracticeBoard constructor needs a state param."""
+    with pytest.raises(TypeError):
+        PracticeBoard()
+
+
+def test_constructed_pboard_has_correct_open_cell():
+    """Test that the new pboard has the correct open cell."""
+    pb = PracticeBoard([[1, 2, 9], [5, 6, 3], [4, 7, 8]])
+    assert pb.practice_open_cell_coords == (3, 1)
+
+
+def test_constructed_pboard_has_correct_size():
+    """Test that the new pboard has the correct size."""
+    pb = PracticeBoard([[1, 2, 9], [5, 6, 3], [4, 7, 8]])
+    assert pb.practice_size == 3
+
+
+def test_pboard_determine_legal_moves_finds_all_moves():
+    """Test that the legal moves are correctly determined in a pboard."""
+    pb = PracticeBoard([[2, 5, 3], [1, 9, 6], [4, 7, 8]])
+    assert sorted(pb.determine_legal_moves()) == sorted([(2, 1), (2, 3), (1, 2), (3, 2)])
+    pb = PracticeBoard([[1, 2, 3], [7, 6, 9], [5, 4, 8]])
+    assert sorted(pb.determine_legal_moves()) == sorted([(3, 3), (3, 1), (2, 2)])
+    pb = PracticeBoard([[1, 2, 9], [5, 6, 3], [4, 7, 8]])
+    assert sorted(pb.determine_legal_moves()) == sorted([(2, 1), (3, 2)])
+
+
+def test_practice_slide_returns_correctthing():
+    """Test that the practice_slide method returns correctthing."""
+    pb = PracticeBoard([[1, 2, 9], [5, 6, 3], [4, 7, 8]])
+    assert pb.practice_slide((2, 1)) == [[1, 9, 2], [5, 6, 3], [4, 7, 8]]
+    pb = PracticeBoard([[2, 5, 3], [1, 9, 6], [4, 7, 8]])
+    assert pb.practice_slide((2, 3)) == [[2, 5, 3], [1, 7, 6], [4, 9, 8]]
+    pb = PracticeBoard([[1, 2, 3], [7, 6, 9], [5, 4, 8]])
+    assert pb.practice_slide((3, 3)) == [[1, 2, 3], [7, 6, 8], [5, 4, 9]]
