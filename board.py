@@ -1,8 +1,9 @@
-"""Define the Board and Cell classes."""
+"""Define the Board and PracticeBoard classes."""
 
 # from random import randint
 from copy import deepcopy
 from random import choice
+import json
 
 
 class PracticeBoard(object):
@@ -64,7 +65,6 @@ class Board(object):
         x, y = coords[0] - 1, coords[1] - 1
         self.state[oy][ox], self.state[y][x] = self.state[y][x], self.state[oy][ox]
         self.open_cell_coords = coords
-        print('after', self.state)
 
         self._determine_legal_moves(coords)
 
@@ -107,16 +107,56 @@ class Board(object):
             self.slide(potential_move)
             self.previous_states.append(deepcopy(self.state))
 
+    def generate_board_states(self, num_of_moves, attempts, size=3):
+        """From a solved board, make a number of random moves, and save unique states."""
+        dict = {}
 
-def generate_board_states(num_of_moves, attempts, size=3):
-    """From a solved board, make a number of random moves, and save unique states."""
-    for i in range(attempts):
-        board = Board(size)
+        for i in range(attempts):
+            board = Board(size)
 
-        for j in range(num_of_moves):
-            board._make_random_move()
+            for j in range(num_of_moves):
+                board._make_random_move()
 
-        print()
+            dict.setdefault(str(deepcopy(board.state)), num_of_moves)
+
+        return dict
+
+    def solve(self, starting_state):
+        """Solve the board, given a starting board state."""
+        self.previous_states = []
+        self.state = starting_state
+        open_y = 1
+        open_x = 1
+        for row in self.state:
+            if 9 in row:
+                open_y += self.state.index(row)
+                open_x += row.index(9)
+
+        self.open_cell_coords = (open_x, open_y)
+
+        self._determine_legal_moves(self.open_cell_coords)
+
+        with open("state_almanac_data.json") as f:
+            state_almanac = json.load(f)
+
+        self.moves_from_solved = state_almanac[str(self.state)]
+
+        while self.moves_from_solved:
+            for move in self.legal_moves:
+                p_board = PracticeBoard(self.state, self.open_cell_coords, self.size)
+                p_board.practice_slide(move)
+                if self.moves_from_solved - state_almanac[str(p_board.practice_state)] == 1:
+                    self.slide(move)
+                    self.moves_from_solved -= 1
+                    print(self.state[0])
+                    print(self.state[1])
+                    print(self.state[2])
+                    print("---------")
+                    break
+
+        print("Solved!")
+
 
 if __name__ == "__main__":
-    generate_board_states(30, 5)
+    b = Board()
+    b.solve([[1, 2, 9], [8, 5, 3], [4, 7, 6]])

@@ -115,3 +115,9 @@ def test_slide_swaps_tiles_vertically_then_horizontally(sol_board):
     sol_board.slide((3, 2))
     sol_board.slide((2, 2))
     assert sol_board.state == [[1, 2, 3], [4, 9, 5], [7, 8, 6]]
+
+
+def test_make_random_move_results_in_new_state(sol_board):
+    """Test that make random move does not return current state."""
+    sol_board._make_random_move()
+    assert sol_board.state != [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
