@@ -14,11 +14,7 @@ class Node(object):
         """
         self.move = move
         self.prev = prev
-
-        flat = [val for row in state for val in row]
-        empty = flat.index(9)
-        coords = (empty % 3 + 1, empty // 3 + 1)
-        self.board = PracticeBoard(state, coords, len(state))
+        self.board = PracticeBoard(state)
 
     @property
     def state(self):

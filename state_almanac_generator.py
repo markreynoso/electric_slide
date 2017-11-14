@@ -29,7 +29,7 @@ def generate_unique_states_from_sets(complexity, size=3):
         board._determine_legal_moves(board.open_cell_coords)
 
         for move in board.legal_moves:
-            pboard = PracticeBoard(board.state, board.open_cell_coords, board.size)
+            pboard = PracticeBoard(board.state)
             pboard.practice_slide(move)
             if str(pboard.practice_state) in set_almanac[complexity - 1]:
                 continue
