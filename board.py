@@ -1,6 +1,5 @@
 """Define the Board and PracticeBoard classes."""
 
-# from random import randint
 from copy import deepcopy
 from random import choice
 import json
@@ -23,10 +22,34 @@ class PracticeBoard(object):
         """Slide the tile at the given coordinates into the open cell."""
         ox, oy = self.practice_open_cell_coords[0] - 1, self.practice_open_cell_coords[1] - 1
         x, y = coords[0] - 1, coords[1] - 1
-        self.practice_state[oy][ox], self.practice_state[y][x] = self.practice_state[y][x], self.practice_state[oy][ox]
-        self.practice_open_cell_coords = coords
+        practice_copy = deepcopy(self.practice_state)
+        practice_copy[oy][ox], practice_copy[y][x] = practice_copy[y][x], practice_copy[oy][ox]
+        # self.practice_open_cell_coords = coords
 
-        return self.practice_state
+        return practice_copy
+
+    def determine_legal_moves(self):
+        """Fill the list of legal moves."""
+        coords = self.practice_open_cell_coords
+        legal_moves = []
+        up = (coords[0], coords[1] - 1)
+        down = (coords[0], coords[1] + 1)
+        left = (coords[0] - 1, coords[1])
+        right = (coords[0] + 1, coords[1])
+
+        if up[0] > 0 and up[1] > 0 and up[0] <= self.practice_size and up[1] <= self.practice_size:
+            legal_moves.append(up)
+
+        if down[0] > 0 and down[1] > 0 and down[0] <= self.practice_size and down[1] <= self.practice_size:
+            legal_moves.append(down)
+
+        if left[0] > 0 and left[1] > 0 and left[0] <= self.practice_size and left[1] <= self.practice_size:
+            legal_moves.append(left)
+
+        if right[0] > 0 and right[1] > 0 and right[0] <= self.practice_size and right[1] <= self.practice_size:
+            legal_moves.append(right)
+
+        return legal_moves
 
 
 class Board(object):
@@ -94,8 +117,6 @@ class Board(object):
         while invalid_move:
             check_board = PracticeBoard(self.state, self.open_cell_coords, self.size)
 
-            # potential_move = self.legal_moves[randint(0, len(self.legal_moves) - 1)]
-
             potential_move = choice(self.legal_moves)
 
             if check_board.practice_slide(potential_move) in self.previous_states:
@@ -146,8 +167,8 @@ class Board(object):
         while self.moves_from_solved:
             for move in self.legal_moves:
                 p_board = PracticeBoard(self.state, self.open_cell_coords, self.size)
-                p_board.practice_slide(move)
-                if self.moves_from_solved - state_almanac[str(p_board.practice_state)] == 1:
+                # p_board.practice_slide(move)
+                if self.moves_from_solved - state_almanac[str(p_board.practice_slide(move))] == 1:
                     self.slide(move)
                     self.moves_from_solved -= 1
                     print(self.state[0])
