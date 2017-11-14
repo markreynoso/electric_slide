@@ -26,7 +26,7 @@ class Node(object):
         curr = self
         p = []
         while curr:
-            p.append(self.move)
+            p.append(curr.state)
             curr = curr.prev
         return p
 
