@@ -1,20 +1,31 @@
-"""Functions to generate an almanac of all possible board states, collated with the\
-number of ideal moves that state is from a solved state."""
+"""Functions to generate an almanac of all possible moves, collated with a\
+boolean of whether or not the move is ideal."""
 
 from board import Board
 from copy import deepcopy
 import json
 
 
-generator_board = Board()
+edge_almanac = {}
 
 
-state_almanac = {}
-
-
-def generate_board_states(num_of_moves, attempts, size=3):
+def generate_edges(num_of_moves, attempts, starting_state, size=3):
     """From a solved board, make a number of random moves, and save unique states."""
-    for i in range(attempts):
+    generator_board = Board()
+    generator_board.previous_states = []
+    generator_board.state = starting_state
+    open_y = 1
+    open_x = 1
+    for row in generator_board.state:
+        if 9 in row:
+            open_y += generator_board.state.index(row)
+            open_x += row.index(9)
+
+    generator_board.open_cell_coords = (open_x, open_y)
+
+    generator_board._determine_legal_moves(generator_board.open_cell_coords)
+
+    for move in generator_board.legal_moves:
         board = Board(size)
 
         for j in range(num_of_moves):
