@@ -1,6 +1,5 @@
 """Define the Board and Cell classes."""
 
-# from random import randint
 from copy import deepcopy
 from random import choice
 
@@ -93,8 +92,6 @@ class Board(object):
         invalid_move = True
         while invalid_move:
             check_board = PracticeBoard(self.state, self.open_cell_coords, self.size)
-
-            # potential_move = self.legal_moves[randint(0, len(self.legal_moves) - 1)]
 
             potential_move = choice(self.legal_moves)
 
