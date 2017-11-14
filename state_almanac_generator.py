@@ -8,7 +8,7 @@ from copy import deepcopy
 
 from board import Board, PracticeBoard
 
-set_almanac = {0: {"[[1, 2, 3], [4, 5, 6], [7, 8, 9]]"}, 1: {"[[1, 2, 3], [4, 5, 9], [7, 8, 6]]", "[[1, 2, 3], [4, 5, 6], [7, 9, 8]]"}, 2: set(), 3: set(), 4: set(), 5: set(), 6: set(), 7: set(), 8: set(), 9: set(), 10: set(), 11: set(), 12: set(), 13: set(), 14: set(), 15: set(), 16: set(), 17: set(), 18: set(), 19: set(), 20: set(), 21: set(), 22: set(), 23: set(), 24: set(), 25: set(), 26: set(), 27: set(), 28: set(), 29: set(), 30: set(), 31: set(),generator_board = Board()
+set_almanac = {0: {"[[1, 2, 3], [4, 5, 6], [7, 8, 9]]"}, 1: {"[[1, 2, 3], [4, 5, 9], [7, 8, 6]]", "[[1, 2, 3], [4, 5, 6], [7, 9, 8]]"}, 2: set(), 3: set(), 4: set(), 5: set(), 6: set(), 7: set(), 8: set(), 9: set(), 10: set(), 11: set(), 12: set(), 13: set(), 14: set(), 15: set(), 16: set(), 17: set(), 18: set(), 19: set(), 20: set(), 21: set(), 22: set(), 23: set(), 24: set(), 25: set(), 26: set(), 27: set(), 28: set(), 29: set(), 30: set(), 31: set()}
 
 
 def generate_unique_states_from_sets(complexity, size=3):
@@ -30,10 +30,10 @@ def generate_unique_states_from_sets(complexity, size=3):
 
         for move in board.legal_moves:
             pboard = PracticeBoard(board.state)
-            pboard.practice_slide(move)
-            if str(pboard.practice_state) in set_almanac[complexity - 1]:
+            # pboard.practice_slide(move)
+            if str(pboard.practice_slide(move)) in set_almanac[complexity - 1]:
                 continue
-            set_almanac[complexity + 1].add(str(pboard.practice_state))
+            set_almanac[complexity + 1].add(str(pboard.practice_slide(move)))
 
 
 if __name__ == "__main__":
