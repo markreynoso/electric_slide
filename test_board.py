@@ -35,14 +35,6 @@ def test_constructed_board_has_correct_legal_moves(sol_board):
     assert sorted(sol_board.legal_moves) == sorted([(3, 2), (2, 3)])
 
 
-@pytest.mark.parametrize('coords, result', [(ALL_COORDS[n], n + 1) for n in range(9)])
-def test_tile_at_coords_gets_correct_number(coords, result):
-    """Test that the tile found at the given coords is correct."""
-    from board import Board
-    b = Board()
-    assert b._tile_at_coords(coords) == result
-
-
 LEGAL_MOVES = [
     ((1, 1), [(1, 2), (2, 1)]),
     ((1, 2), [(1, 1), (1, 3), (2, 2)]),

@@ -8,15 +8,15 @@ import json
 class PracticeBoard(object):
     """Make an instance of the PracticeBoard class."""
 
-    def __init__(self, state, open_cell_coords, size):
+    def __init__(self, state):
         """Constructor for the PracticeBoard class."""
         self.practice_state = deepcopy(state)
-        self.practice_open_cell_coords = open_cell_coords
-        self.practice_size = size
 
-    def _practice_tile_at_coords(self, coords):
-        """Take in 1-indexed x-y coords and return the tile number there."""
-        return self.practice_state[coords[1] - 1][coords[0] - 1]
+        flat = [val for row in state for val in row]
+        empty = flat.index(9)
+        coords = (empty % 3 + 1, empty // 3 + 1)
+        self.practice_open_cell_coords = coords
+        self.practice_size = len(state)
 
     def practice_slide(self, coords):
         """Slide the tile at the given coordinates into the open cell."""
@@ -75,12 +75,6 @@ class Board(object):
             self.state.append(row)
         self.previous_states.append(deepcopy(self.state))
 
-    def _tile_at_coords(self, coords):
-        """Take in 1-indexed x-y coords and return the tile number there."""
-        x = coords[0] - 1
-        y = coords[1] - 1
-        return self.state[y][x]
-
     def slide(self, coords):
         """Slide the tile at the given coordinates into the open cell."""
         self.previous_states.append(self.state)
@@ -115,7 +109,7 @@ class Board(object):
         """Make a random move. Moves which would result in a previous state are disallowed."""
         invalid_move = True
         while invalid_move:
-            check_board = PracticeBoard(self.state, self.open_cell_coords, self.size)
+            check_board = PracticeBoard(self.state)
 
             potential_move = choice(self.legal_moves)
 
@@ -166,7 +160,7 @@ class Board(object):
 
         while self.moves_from_solved:
             for move in self.legal_moves:
-                p_board = PracticeBoard(self.state, self.open_cell_coords, self.size)
+                p_board = PracticeBoard(self.state)
                 # p_board.practice_slide(move)
                 if self.moves_from_solved - state_almanac[str(p_board.practice_slide(move))] == 1:
                     self.slide(move)
