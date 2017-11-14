@@ -1,7 +1,7 @@
 """."""
 
 from board import Board, PracticeBoard
-
+from priority_q import PriorityQ, Node
 
 def manhattan_distance(board_state, size=3):
     """Sum up the manhattan distance of all numbers in the board."""
@@ -15,3 +15,7 @@ def manhattan_distance(board_state, size=3):
 
 def a_star(starting_state, heuristic=manhattan_distance):
     """Find a solution path by exploring possible boards based on heuristic value."""
+    available = PriorityQ()
+    curr = Node(starting_state, None, None)
+    visited = {curr}
+    while
