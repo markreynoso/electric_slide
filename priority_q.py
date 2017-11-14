@@ -1,5 +1,5 @@
 """A priority queue of board states for A*."""
-from board import Board
+from board import PracticeBoard
 
 
 class Node(object):
@@ -12,10 +12,18 @@ class Node(object):
         move: tuple, the move that caused the state
         prev: Node, the node before the current node
         """
-        self.state = state
         self.move = move
         self.prev = prev
-        self.board = Board
+
+        flat = [val for row in self.state for val in row]
+        empty = flat.index(9)
+        coords = (empty % 3 + 1, empty // 3 + 1)
+        self._board = PracticeBoard(state, coords, len(state))
+
+    @property
+    def state(self):
+        """Get the state of the board after the the Node's move."""
+        return self._board.practice_state
 
     def path(self):
         """Get the path leading up to the current Node."""
@@ -35,11 +43,7 @@ class Node(object):
 
     def legal_moves(self):
         """Determine the legal moves for a board state."""
-        flat = [val for row in self.state for val in row]
-        empty = flat.index(9)
-        coords = (empty % 3 + 1, empty // 3 + 1)
-        self.board._determine_legal_moves(coords)
-        return self.board.legal_moves
+        return self._board.determine_legal_moves()
 
 
 class PriorityQ(object):

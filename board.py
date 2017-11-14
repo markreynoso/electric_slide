@@ -27,6 +27,29 @@ class PracticeBoard(object):
 
         return self.practice_state
 
+    def determine_legal_moves(self):
+        """Fill the list of legal moves."""
+        coords = self.practice_open_cell_coords
+        legal_moves = []
+        up = (coords[0], coords[1] - 1)
+        down = (coords[0], coords[1] + 1)
+        left = (coords[0] - 1, coords[1])
+        right = (coords[0] + 1, coords[1])
+
+        if up[0] > 0 and up[1] > 0 and up[0] <= self.practice_size and up[1] <= self.practice_size:
+            legal_moves.append(up)
+
+        if down[0] > 0 and down[1] > 0 and down[0] <= self.practice_size and down[1] <= self.practice_size:
+            legal_moves.append(down)
+
+        if left[0] > 0 and left[1] > 0 and left[0] <= self.practice_size and left[1] <= self.practice_size:
+            legal_moves.append(left)
+
+        if right[0] > 0 and right[1] > 0 and right[0] <= self.practice_size and right[1] <= self.practice_size:
+            legal_moves.append(right)
+
+        return legal_moves
+
 
 class Board(object):
     """Make an instance of the Board class."""
