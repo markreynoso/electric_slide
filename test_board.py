@@ -1,8 +1,12 @@
 """Tests for the board module."""
 
-from copy import deepcopy
+# from copy import deepcopy
 
 import pytest
+
+from random import choice
+
+import json
 
 
 @pytest.fixture
@@ -133,3 +137,46 @@ def test_make_random_move_does_not_return_to_previous_state(sol_board):
         sol_board._make_random_move()
         assert str(sol_board.state) not in previous
         previous = str(sol_board.previous_states)
+
+
+def test_determine_legal_moves_correct_number_of_moves(sol_board):
+    """Test _determine_legal_moves generates the correct number of moves."""
+    sol_board.state = [[2, 5, 3], [1, 9, 6], [4, 7, 8]]
+    sol_board._determine_legal_moves((2, 2))
+    assert len(sol_board.legal_moves) == 4
+    sol_board.state = [[1, 2, 3], [7, 6, 9], [5, 4, 8]]
+    sol_board._determine_legal_moves((3, 2))
+    assert len(sol_board.legal_moves) == 3
+    sol_board.state = [[1, 2, 9], [5, 6, 3], [4, 7, 8]]
+    sol_board._determine_legal_moves((3, 1))
+    assert len(sol_board.legal_moves) == 2
+
+
+def test_solve_returns_something(sol_board):
+    """Test that the solve method doesn't return None."""
+    assert sol_board.solve([[1, 2, 9], [5, 6, 3], [4, 7, 8]])
+
+with open("state_almanac_data.json") as f:
+        state_almanac = json.load(f)
+
+RANDOM_STATES = [json.loads(choice(list(state_almanac))) for i in range(20)]
+
+
+def test_solve_end_state_is_solved(sol_board):
+    """Test that the state of the board after running solve is correct."""
+    sol_board.solve(choice(RANDOM_STATES))
+    assert sol_board.state == [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+
+def test_solve_end_open_cell_coords(sol_board):
+    """Test that the open cell of the board after running solve is correct."""
+    sol_board.solve(choice(RANDOM_STATES))
+    assert sol_board.open_cell_coords == (3, 3)
+
+
+@pytest.mark.parametrize('state', RANDOM_STATES)
+def test_solve_solves_board_ideally(sol_board, state):
+    """Test that the solve method solves in an ideal number of moves."""
+    random_starting_state = state
+    ideal_num_of_moves = state_almanac[str(state)]
+    assert sol_board.solve(random_starting_state) == ideal_num_of_moves
