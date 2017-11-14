@@ -1,9 +1,12 @@
-"""Functions to generate an almanac of all possible board states, collated with the\
-number of ideal moves that state is from a solved state."""
+"""Functions to generate an almanac of all possible board states.
+
+Collated with the number of ideal moves that state is from a solved state.
+"""
+import json
+
+from copy import deepcopy
 
 from board import Board
-from copy import deepcopy
-import json
 
 
 generator_board = Board()
@@ -13,7 +16,7 @@ state_almanac = {}
 
 
 def generate_board_states(num_of_moves, attempts, size=3):
-    """From a solved board, make a number of random moves, and save unique states."""
+    """From solved board, make n random moves, and save unique states."""
     for i in range(attempts):
         board = Board(size)
 
@@ -31,6 +34,10 @@ if __name__ == "__main__":
         state_almanac = json.load(file)
 
     # for i in range(1):
-    generate_board_states(8, 300000)
+    # generate_board_states(11, 700000)
+    generate_board_states(11, 1800000)
+    # generate_board_states(12, 1400000)
+    # generate_board_states(13, 1900000)
+    # generate_board_states(14, 2500000)
 
     print(len(state_almanac))
