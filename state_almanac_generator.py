@@ -88,8 +88,10 @@ def generate_unique_states_from_sets(complexity, size=3):
 
 
 if __name__ == "__main__":
-    for i in range(30):
+    print("0 : 1")
+    for i in range(31):
         generate_unique_states_from_sets(i + 1)
+        print(str(i + 1) + " : " + str(len(set_almanac[i + 1])))
 
     with open("state_almanac_data.json") as f:
         state_almanac = json.load(f)
@@ -99,4 +101,4 @@ if __name__ == "__main__":
             state_almanac.setdefault(str(deepcopy(state)), i)
         with open('state_almanac_data.json', 'w') as file:
             json.dump(state_almanac, file)
-        print(len(state_almanac))
+
