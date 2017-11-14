@@ -35,5 +35,6 @@ def a_star(starting_state, heuristic=manhattan_distance):
         visited.append(curr)
     return list(reversed(curr.path()))
 
-if __name__ == '__main__':
-    print(a_star([[1,2,3],[4,9,8],[7,6,5]]))
+
+if __name__ == '__main__':  # pragma: no cover
+    print(a_star([[1, 2, 3], [4, 9, 8], [7, 6, 5]]))
