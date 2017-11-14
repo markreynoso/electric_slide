@@ -77,3 +77,5 @@ class PriorityQ(object):
             priority = self.priority(item)
 
         self.values[priority].remove(item)
+        if not self.values[priority]:
+            del self.values[priority]
