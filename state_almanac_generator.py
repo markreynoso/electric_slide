@@ -33,11 +33,7 @@ if __name__ == "__main__":
     with open('state_almanac_data.json') as file:
         state_almanac = json.load(file)
 
-    # for i in range(1):
-    # generate_board_states(11, 700000)
-    generate_board_states(11, 1800000)
-    # generate_board_states(12, 1400000)
-    # generate_board_states(13, 1900000)
-    # generate_board_states(14, 2500000)
+    for i in range(3):
+        generate_board_states(i + 12, ((i + 1) * 300000) + 1200000)
 
     print(len(state_almanac))
