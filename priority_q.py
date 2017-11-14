@@ -18,12 +18,12 @@ class Node(object):
         flat = [val for row in self.state for val in row]
         empty = flat.index(9)
         coords = (empty % 3 + 1, empty // 3 + 1)
-        self._board = PracticeBoard(state, coords, len(state))
+        self.board = PracticeBoard(state, coords, len(state))
 
     @property
     def state(self):
         """Get the state of the board after the the Node's move."""
-        return self._board.practice_state
+        return self.board.practice_state
 
     def path(self):
         """Get the path leading up to the current Node."""
@@ -43,7 +43,7 @@ class Node(object):
 
     def legal_moves(self):
         """Determine the legal moves for a board state."""
-        return self._board.determine_legal_moves()
+        return self.board.determine_legal_moves()
 
 
 class PriorityQ(object):
@@ -58,7 +58,7 @@ class PriorityQ(object):
         self.values.setdefault(priority, [])
         self.values[priority].append(item)
 
-    def pop(self, item, priority):
+    def pop(self):
         """Remove the highest prioirty item from the queue."""
         return self.values[min(self.values)].pop()
 
