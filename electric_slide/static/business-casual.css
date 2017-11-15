@@ -127,6 +127,7 @@ hr.divider {
 }
 
 #blank {
+  background-color: darkgrey;
   left: 250px;
   top: 250px;
 }
