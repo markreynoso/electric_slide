@@ -18,10 +18,26 @@ function startBoard(state){
     }
 }
 
-function solveBoard() {
+function solveBoard(solutionList) {
+    while solutionList.length > 0;
+        state = solutionList.shift()
+        for (var i = 0; i < 3; i++) {
+            for (var j = 0; j < 3; j++) {
+                if state[i][j] === 9:
+                    slide(i, j)
+                    
+            }
+        }
     // for (var i = 0; i < solutionList.length; i++) {
         startBoard(solutionList.shift())
     // }
+}
+
+function slide(y, x) {
+    
+
+
+    $("[data-coords='" + i + ',' + j + "']").
 }
 
 
