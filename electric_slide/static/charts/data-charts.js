@@ -1,6 +1,6 @@
 
 function populateCharts() {
-    Chart.scaleService.updateScaleDefaults('linear', {
+    axisSettings = {
         gridLines: {
             drawOnChartArea: false,
             color: 'rgb(251, 136, 131)'
@@ -13,21 +13,9 @@ function populateCharts() {
         ticks: {
             fontFamily: "'Open Sans', 'Helvetica', 'Arial', sans-serif"
         }
-    })
-    Chart.scaleService.updateScaleDefaults('category', {
-        gridLines: {
-            drawOnChartArea: false,
-            color: 'rgb(251, 136, 131)'
-        },
-        scaleLabel: {
-            display: true,
-            fontFamily: "'Josefin Slab', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-            fontSize: 20
-        },
-        ticks: {
-            fontFamily: "'Open Sans', 'Helvetica', 'Arial', sans-serif"
-        }
-    })
+    }
+    Chart.scaleService.updateScaleDefaults('linear', axisSettings)
+    Chart.scaleService.updateScaleDefaults('category', axisSettings)
     getStateDistributionData(buildStateDistributionChart)
     buildScatterChart({},'timeChart', 'Time (ms)')
 }
@@ -59,7 +47,6 @@ function buildStateDistributionChart(rawData) {
             },
             scales: {
                 yAxes: [{
-                    type: 'linear',
                     scaleLabel: {
                         labelString: 'States',
                     }
@@ -85,11 +72,12 @@ function buildScatterChart(rawData, chartId, yAxisLabel) {
 
         data: {
             datasets: [{
-                label: 'A* Algoritm',
+                label: 'Greedy Algoritm',
                 fill: false,
                 showLine: false,
-                borderColor: 'rgb(227, 27, 38)',
-                backgroundColor: 'rgb(227, 27, 38)',
+                borderColor: 'rgb(0, 0, 0)',
+                backgroundColor: 'rgb(0, 0, 0)',
+                pointStyle: 'rect',
                 data: [{
                     x: 10, y: 2
                 },{
@@ -98,16 +86,38 @@ function buildScatterChart(rawData, chartId, yAxisLabel) {
                     x: 5, y: 9
                 },{
                     x: 2, y: 1
+                }]
+            }, {
+                label: 'A* Algoritm',
+                fill: false,
+                showLine: false,
+                borderColor: 'rgb(249, 120, 117)',
+                backgroundColor: 'rgb(249, 120, 117)',
+                pointStyle: 'triangle',
+                data: [{
+                    x: 1, y: 3
+                },{
+                    x: 4, y: 4
+                },{
+                    x: 5, y: 2
                 },{
                     x: 2, y: 0
+                }]
+            }, {
+                label: 'Machine Learning',
+                fill: false,
+                showLine: false,
+                borderColor: 'rgb(227, 27, 38)',
+                backgroundColor: 'rgb(227, 27, 38)',
+                pointStyle: 'star',
+                data: [{
+                    x: 10, y: 3
                 },{
-                    x: 3, y: 6
+                    x: 4, y: 9
                 },{
-                    x: 3, y: 12
+                    x: 5, y: 2
                 },{
-                    x: 9, y: 4
-                },{
-                    x: 7, y: 5
+                    x: 2, y: 10
                 }]
             }]
         },
@@ -116,7 +126,10 @@ function buildScatterChart(rawData, chartId, yAxisLabel) {
             legend: {
                 position: 'bottom',
                 labels: {
-                    fontFamily: "'Open Sans', 'Helvetica', 'Arial', sans-serif"
+                    fontFamily: "'Open Sans', 'Helvetica', 'Arial', sans-serif",
+                    fontSize: 15,
+                    usePointStyle: true,
+                    padding: 20
                 }
             },
             scales: {
