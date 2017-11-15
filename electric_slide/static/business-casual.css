@@ -87,47 +87,47 @@ hr.divider {
   position: absolute;
 }
 
-#one {
+[id = '00'] {
   left: 0px;
   top: 0px;
 }
 
-#two {
+[id = '01'] {
   left: 125px;
   top: 0px;
 }
 
-#three {
+[id = '02'] {
   left: 250px;
   top: 0px;
 }
 
-#four {
+[id = '10'] {
   left: 0px;
   top: 125px;
 }
 
-#five {
+[id = '11'] {
   left: 125px;
   top: 125px;
 }
 
-#six {
+[id = '12'] {
   left: 250px;
   top: 125px;
 }
 
-#seven {
+[id = '20'] {
   left: 0px;
   top: 250px;
 }
 
-#eight {
+[id = '21'] {
   left: 125px;
   top: 250px;
 }
 
-#nine {
+[id = '22'] {
   /*background-color: darkgrey;*/
   left: 250px;
   top: 250px;
