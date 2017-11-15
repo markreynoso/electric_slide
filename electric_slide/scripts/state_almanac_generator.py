@@ -39,7 +39,7 @@ def generate_unique_states_from_sets(complexity, size=3):
             set_almanac[complexity + 1].add(str(pboard.practice_slide(move)))
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     for i in range(32):
         generate_unique_states_from_sets(i)
         print(str(i) + " : " + str(len(set_almanac[i])))
