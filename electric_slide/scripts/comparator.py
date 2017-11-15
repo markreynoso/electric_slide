@@ -1,7 +1,7 @@
 """Comparator function for various solving methods."""
 
-from board import Board
-from algorithm import a_star, greedy_pure_search
+from electric_slide.scripts.board import Board
+from electric_slide.scripts.algorithm import a_star, greedy_pure_search
 import time
 import json
 
