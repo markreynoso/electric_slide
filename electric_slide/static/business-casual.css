@@ -137,3 +137,20 @@ hr.divider {
 .tile-blank {
     background-color: darkgrey;
 }
+
+.puzzle-button {
+  width: 100px;
+  height: 40px;
+  text-align: center;
+  margin: auto;
+  background-color: grey;
+  color: rgba(255, 255, 255, .8);
+  font-size: 30px;
+  padding: 5px, 10px;
+}
+
+.buttons {
+  margin: auto;
+  text-align: center;
+
+}
