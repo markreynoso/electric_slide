@@ -17,12 +17,16 @@ function populateCharts() {
     Chart.scaleService.updateScaleDefaults('linear', axisSettings)
     Chart.scaleService.updateScaleDefaults('category', axisSettings)
     getStateDistributionData(buildStateDistributionChart)
-    buildScatterChart({},'timeChart', 'Time (ms)')
+    getSolvingData([buildTimeScatterChart])
 }
 
 
 function getStateDistributionData(callback) {
-    $.get('/api/state-distribution').then(callback)
+    $.get('/api/data/states').then(callback)
+}
+
+function getSolvingData(callbacks) {
+    $.get('/api/data/solve').then(data => callbacks.forEach(c => c(data)))
 }
 
 
@@ -63,9 +67,13 @@ function buildStateDistributionChart(rawData) {
 
 }
 
-function buildScatterChart(rawData, chartId, yAxisLabel) {
+function buildTimeScatterChart(rawData) {
+    compexities = Object.keys(rawData)
+    treeData = compexities.map(c => {return {x:c, y:rawData[c]['tree']['time']}})
+    aStarData = compexities.map(c => {return {x:c, y:rawData[c]['a_star']['time']}})
+    greedyData = compexities.map(c => {return {x:c, y:rawData[c]['greedy']['time']}})
 
-    let ctx = document.getElementById(chartId).getContext('2d');
+    let ctx = document.getElementById('timeChart').getContext('2d');
 
     let chart = new Chart(ctx, {
         type: 'scatter',
@@ -79,15 +87,7 @@ function buildScatterChart(rawData, chartId, yAxisLabel) {
                 backgroundColor: 'rgb(0, 0, 0)',
                 pointStyle: 'rect',
                 radius: 4,
-                data: [{
-                    x: 10, y: 2
-                },{
-                    x: 4, y: 3
-                },{
-                    x: 5, y: 9
-                },{
-                    x: 2, y: 1
-                }]
+                data: greedyData
             }, {
                 label: 'A* Algoritm',
                 fill: false,
@@ -95,15 +95,7 @@ function buildScatterChart(rawData, chartId, yAxisLabel) {
                 borderColor: 'rgb(227, 27, 38)',
                 pointStyle: 'circle',
                 radius: 4,
-                data: [{
-                    x: 1, y: 3
-                },{
-                    x: 4, y: 4
-                },{
-                    x: 5, y: 2
-                },{
-                    x: 2, y: 0
-                }]
+                data: aStarData
             }, {
                 label: 'Machine Learning',
                 fill: false,
@@ -112,15 +104,7 @@ function buildScatterChart(rawData, chartId, yAxisLabel) {
                 backgroundColor: 'rgb(227, 27, 38)',
                 pointStyle: 'star',
                 radius: 4,
-                data: [{
-                    x: 10, y: 3
-                },{
-                    x: 4, y: 9
-                },{
-                    x: 5, y: 2
-                },{
-                    x: 2, y: 10
-                }]
+                data: treeData
             }]
         },
 
@@ -138,7 +122,7 @@ function buildScatterChart(rawData, chartId, yAxisLabel) {
                 yAxes: [{
                     type: 'linear',
                     scaleLabel: {
-                        labelString: yAxisLabel,
+                        labelString: 'Time (ms)',
                     }
                 }],
                 xAxes: [{
