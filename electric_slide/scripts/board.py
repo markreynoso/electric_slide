@@ -2,7 +2,6 @@
 
 from copy import deepcopy
 from random import choice
-import json
 
 
 class PracticeBoard(object):
@@ -24,7 +23,6 @@ class PracticeBoard(object):
         x, y = coords[0] - 1, coords[1] - 1
         practice_copy = deepcopy(self.practice_state)
         practice_copy[oy][ox], practice_copy[y][x] = practice_copy[y][x], practice_copy[oy][ox]
-        # self.practice_open_cell_coords = coords
 
         return practice_copy
 
@@ -122,22 +120,9 @@ class Board(object):
             self.slide(potential_move)
             self.previous_states.append(deepcopy(self.state))
 
-    # def generate_board_states(self, num_of_moves, attempts, size=3):
-    #     """From a solved board, make a number of random moves, and save unique states."""
-    #     dict = {}
-
-    #     for i in range(attempts):
-    #         board = Board(size)
-
-    #         for j in range(num_of_moves):
-    #             board._make_random_move()
-
-    #         dict.setdefault(str(deepcopy(board.state)), num_of_moves)
-
-    #     return dict
-
-    def solve(self, starting_state):
+    def solve(self, starting_state, almanac):
         """Solve the board, given a starting board state."""
+        state_almanac = almanac
         self.previous_states = []
         self.state = starting_state
         open_y = 1
@@ -153,24 +138,15 @@ class Board(object):
 
         moves_made = 0
 
-        with open("electric_slide/data/state_almanac_data.json") as f:
-            state_almanac = json.load(f)
-
         self.moves_from_solved = state_almanac[str(self.state)]
 
         while self.moves_from_solved:
             for move in self.legal_moves:
                 p_board = PracticeBoard(self.state)
-                # p_board.practice_slide(move)
                 if self.moves_from_solved - state_almanac[str(p_board.practice_slide(move))] == 1:
                     self.slide(move)
                     self.moves_from_solved -= 1
                     moves_made += 1
-                    print(self.state[0])
-                    print(self.state[1])
-                    print(self.state[2])
-                    print("---------")
                     break
 
-        print("Solved!")
         return moves_made
