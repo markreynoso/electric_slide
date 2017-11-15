@@ -78,6 +78,12 @@ def test_astar_correcty_solves_complexity_25():
     assert a_star([[6, 1, 5], [7, 2, 9], [3, 8, 4]])
 
 
+def test_greedy_pure_correcty_solves_complexity_25():
+    """Test that greedy pure solves correctly for high heuristic values."""
+    from electric_slide.scripts.algorithm import greedy_pure_search
+    assert greedy_pure_search([[6, 1, 5], [7, 2, 9], [3, 8, 4]])
+
+
 # The test below is for the most complex board state, which it passes, but takes a long time
 # def test_astar_correcty_solves_complexity_31():
 #     """Test that astar solves correctly for high heuristic values."""
