@@ -9,7 +9,8 @@ def manhattan_distance(board_state, size=3):
     for y in range(size):
         for x in range(size):
             idx = board_state[y][x] - 1
-            diff += abs(idx % size - x) + abs(idx / size - y)
+            if idx != 8:
+                diff += abs(idx % size - x) + abs(idx // size - y)
     return diff
 
 
@@ -32,7 +33,8 @@ def a_star(starting_state, heuristic=manhattan_distance):
                     available.push(node, value)
         curr = available.pop()
         visited.append(curr)
-    return curr.path()
+    return list(reversed(curr.path()))
 
-if __name__ == '__main__':
-    print(a_star([[1,2,3],[4,9,8],[7,6,5]]))
+
+if __name__ == '__main__':  # pragma: no cover
+    print(a_star([[1, 2, 3], [4, 9, 8], [7, 6, 5]]))
