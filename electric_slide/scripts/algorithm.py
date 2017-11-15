@@ -37,7 +37,7 @@ def a_star(starting_state, heuristic=manhattan_distance):
 
 
 def greedy_pure_search(starting_state, heuristic=manhattan_distance):
-    """Find a solution path by exploring possible boards based on heuristic value, only."""
+    """Find a solution path by exploring possible boards based on heuristic value only."""
     available = PriorityQ()
     curr = Node(starting_state, None, None)
     visited = [curr]
