@@ -174,9 +174,3 @@ class Board(object):
 
         print("Solved!")
         return moves_made
-
-
-if __name__ == "__main__":
-    print()
-    b = Board()
-    b.solve([[1, 2, 9], [8, 5, 3], [4, 7, 6]])
