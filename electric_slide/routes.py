@@ -3,3 +3,4 @@ def includeme(config):
     config.add_route('home', '/')
     config.add_route('data', '/data')
     config.add_route('about', '/about')
+    config.add_route('states-data', '/api/state-distribution')
