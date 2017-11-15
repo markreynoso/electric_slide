@@ -1,7 +1,8 @@
 """Comparator function for various solving methods."""
 
-from board import Board
 from algorithm import a_star, greedy_pure_search
+from board import Board
+from copy import deepcopy
 import time
 import json
 
@@ -15,6 +16,8 @@ def comparator(starting_state):
 
     complexity = state_almanac[str(starting_state)]
 
+    state_copy = deepcopy(starting_state)
+
     a_star_start_time = time.time()
     a_star_moves = len(a_star(starting_state)) - 1
     a_star_solve_time = (time.time() - a_star_start_time) * 1000
@@ -24,7 +27,7 @@ def comparator(starting_state):
     tree_solve_time = (time.time() - tree_start_time) * 1000
 
     greedy_start_time = time.time()
-    greedy_moves = len(greedy_pure_search(starting_state)) - 1
+    greedy_moves = len(greedy_pure_search(state_copy)) - 1
     greedy_solve_time = (time.time() - greedy_start_time) * 1000
 
     return "\n\nComplexity: {}\n\n Tree Time: {} ms\n Tree Moves: {}\n\n A* Time: {} ms\n A* Moves: {}\n\n Greedy Time: {} ms\n Greedy Moves: {}\n\n".format(complexity, tree_solve_time, tree_moves, a_star_solve_time, a_star_moves, greedy_solve_time, greedy_moves)
