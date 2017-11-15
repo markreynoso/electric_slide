@@ -106,8 +106,8 @@
 
       <div class="bg-faded p-4 my-4">
         <hr class="divider">
-        <h2 class="text-center text-lg text-uppercase my-0">Why solve a
-          <strong>slider puzzle</strong>
+        <h2 class="text-center text-lg text-uppercase my-0">What is a
+          <strong>SLIDER PUZZLE</strong>
         </h2>
         <hr class="divider">
         <div id="puzzle-container">
@@ -130,20 +130,21 @@
         </h2>
         <hr class="divider">
         <img class="img-fluid float-left mr-4 d-none d-lg-block" src="../static/img/pupper.png" alt="">
-        <p>If I gave you a 3x3 slider puzzle to solve, you could probably solve it from any amount of shuffling in under a minute. If you tried to explain how to solve it to someone it probably wouldn't take more than a couple more minutes. But if you tried to teach a computer to solve it, the problem changes entirely.</p>
-        <p>We've probably seen stories of computers playing chess and beating the best players in the world, and we might have heard scary predictions about computers becoming self-aware. But, the idea of a machine learning to do something that we do is a fact of life that excites us and intrigues us, thus the slider puzzle.</p>
-        <p>The slider puzzle is simple and straight-forward. There are predictable beginnings and endings. It only takes one play. It is scalable and has a very limited set of moves. It is a great candidate as a starting point for machine learning.</p>
+        <p>Also known as an "8-puzzle," a 3x3 slider puzzle is a simple game with 8 tiles on a 3x3 grid.
+          Typically, the 8 tiles are either numbered 1-8 or form a picture when in order. The open tile space allows for adjacent tiles to slide into it.</p>
+        <p>The object of the game is to start from a scrambled state and, through sliding, to assemble the
+          picture or order the numbers. We refer to this as the solved board state.</p>
+        <p>The slider puzzle is simple and straightforward. It contains no random elements. It's simple for a casual player to solve the board, but not simple to identify the OPTIMAL solution. It is easy scalable and any given board state has a very limited set of moves (either 2, 3, or 4.) Slider puzzles are a great candidate for machine learning.</p>
       </div>
 
       <div class="bg-faded p-4 my-4">
         <hr class="divider">
-        <h2 class="text-center text-lg text-uppercase my-0">what is
-          <strong>machine learning</strong>
+        <h2 class="text-center text-lg text-uppercase my-0">What is
+          <strong>MACHINE LEARNING</strong>
         </h2>
         <hr class="divider">
-        <img class="img-fluid float-left mr-4 d-none d-lg-block" src="../static/img/intro-pic.jpg" alt="">
-        <p>Machine learning is a form programming in which the computer is given a basic parameters regarding the desired task and outcome, but where the computer learns through trial and error better and worse paths and solutions. One example of this many of use on a daily basis is through social media. If your picture is posted on Facebook, you could be tagged my name in the photo without ever writing a word. Facebook knows your face. They've seen your picture so many times that it has become recognizable. Nobody told the computer to tag you, the computer learned the unique curves of your face and decided to suggest that you are indeed the individual in the photo.</p>
-        <p>With the slider puzzle, we have taught the machine the rules, shown the machine some ways that the game could be solved, and allowed the computer to play over and over again. Over time the machine is able to distinguish between a good move and bad move, resulting in a more efficient path to the solution.</p>
+        <img class="img-fluid float-left mr-4 d-none d-lg-block" src="../static/img/facial-recognition.png" alt="">
+        <p><a class="font-weight-bold" href="https://en.wikipedia.org/wiki/Machine_learning" target="_blank" title="Wikipedia Article">Machine Learning</a> is a form of programming in which the computer is given basic parameters regarding the desired task and outcome, but is not programmed for a specific task. The program must "learn" to accomplish its "goal."</p><p>One common example of this is facial recognition software. Facebook automatically scans pictures users upload, and uses programs trained with machine learning to attempt to identify the faces of the people in the picture. Facebook users (unwittingly) help to train the machine by tagging themselves and their friends in their pictures. Each of those tagged faces is fed into the program, improving its accuracy.</p><p>Our approach to the slider puzzle began with programming a functional game board. Next, we attacked the problem of solving the board from two angles:</p><p>The first of these was to generate a <a class="font-weight-bold" href="https://en.wikipedia.org/wiki/Decision_tree" target="_blank" title="Wikipedia Article">Decision Tree</a>. This takes the form of an almanac of all possible board states, collated with how many ideal moves each state is from being solved (the state's "complexity.") Once the almanac is assembled, solving the board (and solving it "perfectly,") is as simple as selecting only moves which result in a state of decreased complexity.</p><p>Our second approach was to implement the <a class="font-weight-bold" href="https://en.wikipedia.org/wiki/A*_search_algorithm" target="_blank" title="Wikipedia Article">A*</a> (prounounced "A-Star") search algorithm. Our application of A* treats each board state as a node in a graph, then attempts to find the shortest path to a solved state, at each step checking branching paths and selecting the one which appears shortest. It makes this determination by use of <a class="font-weight-bold" href="https://en.wikipedia.org/wiki/Heuristic_(computer_science)" target="_blank" title="Wikipedia Article">heuristics.</a></p>
       </div>
 
     </div>
