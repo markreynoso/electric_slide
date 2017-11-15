@@ -1,6 +1,6 @@
 """."""
 
-from .priority_q import PriorityQ, Node
+from priority_q import PriorityQ, Node
 
 
 def manhattan_distance(board_state, size=3):
@@ -59,4 +59,15 @@ def greedy_pure_search(starting_state, heuristic=manhattan_distance):
 
 
 if __name__ == '__main__':  # pragma: no cover
-    print(a_star([[1, 2, 3], [4, 9, 8], [7, 6, 5]]))
+    # print(a_star([[1, 2, 3], [4, 9, 8], [7, 6, 5]]))
+    import time
+    start = time.time()
+    print(greedy_pure_search([[4, 2, 8], [5, 3, 6], [7, 1, 9]]))
+    print(time.time() - start)
+    print(len(greedy_pure_search([[4, 2, 8], [5, 3, 6], [7, 1, 9]])))
+    print()
+    print()
+    start = time.time()
+    print(a_star([[4, 2, 8], [5, 3, 6], [7, 1, 9]]))
+    print(time.time() - start)
+    print(len(a_star([[4, 2, 8], [5, 3, 6], [7, 1, 9]])))
