@@ -70,16 +70,63 @@ hr.divider {
   margin: auto;
   height: 375px;
   width: 375px;
+  position: relative;
 }
 
 .tile {
   text-align: center;
   float: left;
   width: 122px;
+  margin: 1px;
   height: 122px;
   background-color: grey;
-  margin: 1px;
   padding-top: 35px;
   font-size: 30px;
   color: rgba(255, 255, 255, .8);
+  position: absolute;
+}
+ 
+#one {
+  left: 0px;
+  top: 0px;
+}
+
+#two {
+  left: 125px;
+  top: 0px;
+}
+
+#three {
+  left: 250px;
+  top: 0px;
+}
+
+#four {
+  left: 0px;
+  top: 125px;
+}
+
+#five {
+  left: 125px;
+  top: 125px;
+}
+
+#six {
+  left: 250px;
+  top: 125px;
+}
+
+#seven {
+  left: 0px;
+  top: 250px;
+}
+
+#eight {
+  left: 125px;
+  top: 250px;
+}
+
+#blank {
+  left: 250px;
+  top: 250px;
 }
