@@ -15,7 +15,7 @@ def manhattan_distance(board_state, size=3):
 
 
 def a_star(starting_state, heuristic=manhattan_distance):
-    """Find a solution path by exploring possible boards based on heuristic value."""
+    """Find a solution path by exploring possible boards based on heuristic value and path length."""
     available = PriorityQ()
     curr = Node(starting_state, None, None)
     visited = [curr]
@@ -24,6 +24,28 @@ def a_star(starting_state, heuristic=manhattan_distance):
             move_state = curr.board.practice_slide(move)
             node = Node(move_state, move, curr)
             value = heuristic(node.state) + len(node.path())
+            if available.priority(node) is None and node not in visited:
+                available.push(node, value)
+            elif node not in visited:
+                p = available.priority(node)
+                if p > value:
+                    available.remove(node, p)
+                    available.push(node, value)
+        curr = available.pop()
+        visited.append(curr)
+    return list(reversed(curr.path()))
+
+
+def greedy_pure_search(starting_state, heuristic=manhattan_distance):
+    """Find a solution path by exploring possible boards based on heuristic value, only."""
+    available = PriorityQ()
+    curr = Node(starting_state, None, None)
+    visited = [curr]
+    while heuristic(curr.state):  # heuristic is non-zero when unsolved
+        for move in curr.legal_moves():
+            move_state = curr.board.practice_slide(move)
+            node = Node(move_state, move, curr)
+            value = heuristic(node.state)
             if available.priority(node) is None and node not in visited:
                 available.push(node, value)
             elif node not in visited:
