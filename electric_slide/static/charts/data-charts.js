@@ -12,9 +12,9 @@ function buildStateDistributionChart(rawData) {
         type: 'line',
 
         data: {
-            labels: [1,2,3,4,5,6,7,8,9,10],
+            labels: Object.keys(rawData),
             datasets: [{
-                data: [0,3,6,2,1,7,8,2,12,4], 
+                data: Object.values(rawData), 
                 borderColor: 'rgb(227, 27, 38)'
             }]
         },
@@ -25,6 +25,7 @@ function buildStateDistributionChart(rawData) {
             },
             scales: {
                 yAxes: [{
+                    type: 'linear',
                     gridLines: {
                         drawOnChartArea: false,
                         color: 'rgb(251, 136, 131)'
