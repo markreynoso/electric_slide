@@ -78,6 +78,7 @@ function buildScatterChart(rawData, chartId, yAxisLabel) {
                 borderColor: 'rgb(0, 0, 0)',
                 backgroundColor: 'rgb(0, 0, 0)',
                 pointStyle: 'rect',
+                radius: 4,
                 data: [{
                     x: 10, y: 2
                 },{
@@ -91,9 +92,9 @@ function buildScatterChart(rawData, chartId, yAxisLabel) {
                 label: 'A* Algoritm',
                 fill: false,
                 showLine: false,
-                borderColor: 'rgb(249, 120, 117)',
-                backgroundColor: 'rgb(249, 120, 117)',
-                pointStyle: 'triangle',
+                borderColor: 'rgb(227, 27, 38)',
+                pointStyle: 'circle',
+                radius: 4,
                 data: [{
                     x: 1, y: 3
                 },{
@@ -110,6 +111,7 @@ function buildScatterChart(rawData, chartId, yAxisLabel) {
                 borderColor: 'rgb(227, 27, 38)',
                 backgroundColor: 'rgb(227, 27, 38)',
                 pointStyle: 'star',
+                radius: 4,
                 data: [{
                     x: 10, y: 3
                 },{
@@ -129,7 +131,7 @@ function buildScatterChart(rawData, chartId, yAxisLabel) {
                     fontFamily: "'Open Sans', 'Helvetica', 'Arial', sans-serif",
                     fontSize: 15,
                     usePointStyle: true,
-                    padding: 20
+                    padding: 30
                 }
             },
             scales: {
