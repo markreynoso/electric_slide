@@ -153,7 +153,7 @@ class Board(object):
 
         moves_made = 0
 
-        with open("state_almanac_data.json") as f:
+        with open("electric_slide/data/state_almanac_data.json") as f:
             state_almanac = json.load(f)
 
         self.moves_from_solved = state_almanac[str(self.state)]

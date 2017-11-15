@@ -5,7 +5,7 @@ import pytest
 
 def test_construct_a_new_start_node():
     """Test that a starting node can be constructed."""
-    from priority_q import Node
+    from electric_slide.scripts.priority_q import Node
     n = Node([[1, 2, 3], [4, 5, 6], [7, 8, 9]], None, None)
     assert n.move is None
     assert n.prev is None
@@ -14,7 +14,7 @@ def test_construct_a_new_start_node():
 
 def test_construct_a_new_child_node_after_start(n0):
     """Test that creating a child Node points to parent."""
-    from priority_q import Node
+    from electric_slide.scripts.priority_q import Node
     next_state = [[1, 2, 3], [4, 5, 6], [7, 9, 8]]
     n = Node(next_state, (2, 3), n0)
     assert n.move == (2, 3)
@@ -24,7 +24,7 @@ def test_construct_a_new_child_node_after_start(n0):
 
 def test_construct_a_new_child_node(n1):
     """Test that creating a child Node points to parent."""
-    from priority_q import Node
+    from electric_slide.scripts.priority_q import Node
     next_state = [[1, 2, 3], [4, 5, 6], [9, 7, 8]]
     n = Node(next_state, (1, 3), n1)
     assert n.move == (1, 3)
@@ -69,7 +69,7 @@ def test_path_has_all_states_in_the_chain(chain7):
 
 def test_equality_between_nodes_with_the_same_state(n1):
     """Test that Nodes with the same state are equivalent."""
-    from priority_q import Node
+    from electric_slide.scripts.priority_q import Node
     node1 = Node([[1, 2, 3], [4, 5, 6], [9, 7, 8]], (1, 2), None)
     node2 = Node([[1, 2, 3], [4, 5, 6], [9, 7, 8]], (3, 1), n1)
     assert node1 is not node2
@@ -78,7 +78,7 @@ def test_equality_between_nodes_with_the_same_state(n1):
 
 def test_inequality_between_nodes_with_different_states():
     """Test that Nodes with different states are inequivalent."""
-    from priority_q import Node
+    from electric_slide.scripts.priority_q import Node
     node1 = Node([[1, 2, 3], [4, 5, 6], [9, 7, 8]], (1, 2), None)
     node2 = Node([[9, 2, 3], [1, 5, 6], [4, 7, 8]], (1, 2), None)
     assert node1 is not node2
@@ -102,7 +102,7 @@ def test_find_all_legal_moves_for_open_center(chain7):
 
 def test_constructing_a_priority_q_is_empty():
     """Test that a new PriorityQ is empty."""
-    from priority_q import PriorityQ
+    from electric_slide.scripts.priority_q import PriorityQ
     q = PriorityQ()
     assert q.values == {}
 

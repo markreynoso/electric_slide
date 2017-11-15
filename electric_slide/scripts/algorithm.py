@@ -1,6 +1,6 @@
 """."""
 
-from priority_q import PriorityQ, Node
+from .priority_q import PriorityQ, Node
 
 
 def manhattan_distance(board_state, size=3):

@@ -1,5 +1,5 @@
 """A priority queue of board states for A*."""
-from board import PracticeBoard
+from electric_slide.scripts.board import PracticeBoard
 
 
 class Node(object):

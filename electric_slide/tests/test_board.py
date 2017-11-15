@@ -8,13 +8,13 @@ from random import choice
 
 import json
 
-from board import PracticeBoard
+from electric_slide.scripts.board import PracticeBoard
 
 
 @pytest.fixture
 def sol_board():
     """Create a solved board."""
-    from board import Board
+    from electric_slide.scripts.board import Board
     return Board()
 
 
@@ -26,7 +26,7 @@ for y in range(1, 4):
 
 def test_empty_constructor_makes_board_in_solved_state():
     """Test that the Board constructor creates a solved board."""
-    from board import Board
+    from electric_slide.scripts.board import Board
     b = Board()
     assert b.state == [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 
@@ -57,7 +57,7 @@ LEGAL_MOVES = [
 @pytest.mark.parametrize('coords, result', LEGAL_MOVES)
 def test_determine_legal_moves_finds_all_moves(coords, result):
     """Test that the legal moves are correctly determined around any coords."""
-    from board import Board
+    from electric_slide.scripts.board import Board
     b = Board()
     b._determine_legal_moves(coords)
     assert sorted(b.legal_moves) == sorted(result)
@@ -158,7 +158,7 @@ def test_solve_returns_something(sol_board):
     """Test that the solve method doesn't return None."""
     assert sol_board.solve([[1, 2, 9], [5, 6, 3], [4, 7, 8]])
 
-with open("state_almanac_data.json") as f:
+with open("electric_slide/data/state_almanac_data.json") as f:
         state_almanac = json.load(f)
 
 RANDOM_STATES = [json.loads(choice(list(state_almanac))) for i in range(20)]
