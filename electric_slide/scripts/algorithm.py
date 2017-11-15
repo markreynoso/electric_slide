@@ -1,6 +1,6 @@
-"""."""
+"""Algorithms for the AI of solving a sliding puzzle."""
 
-from priority_q import PriorityQ, Node
+from electric_slide.scripts.priority_q import PriorityQ, Node
 
 
 def manhattan_distance(board_state, size=3):
