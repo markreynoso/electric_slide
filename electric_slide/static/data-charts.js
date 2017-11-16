@@ -100,7 +100,7 @@ function buildTimeScatterChart(rawData) {
                 showLine: false,
                 borderColor: 'rgb(0, 0, 0)',
                 backgroundColor: 'rgb(0, 0, 0)',
-                pointStyle: 'rect',
+                pointStyle: 'rectRot',
                 radius: 4,
                 data: greedyData
             }, {
@@ -112,7 +112,7 @@ function buildTimeScatterChart(rawData) {
                 radius: 4,
                 data: aStarData
             }, {
-                label: 'Machine Learning',
+                label: 'Decision Tree',
                 fill: false,
                 showLine: false,
                 borderColor: 'rgb(227, 27, 38)',
@@ -165,9 +165,15 @@ function buildMovesScatterChart(rawData) {
     aStarData = complexities.map(c => {
         return {x:c, y:rawData[c]['a_star']['moves'][0]}
     })
-    greedyData = complexities.map(c => {
-        return {x:c, y:rawData[c]['greedy']['moves'][0]}
-    })
+    greedyData = complexities.reduce((data, c) => {
+        allMoves = rawData[c]['greedy']['moves']
+        for (let i = 0; i < allMoves.length; i++) {
+            if (allMoves.indexOf(allMoves[i]) == i) {
+                data.push({x:c, y:allMoves[i]})
+            }
+        }
+        return data
+    }, [])
 
     let ctx = document.getElementById('movesChart').getContext('2d');
 
@@ -181,7 +187,7 @@ function buildMovesScatterChart(rawData) {
                 showLine: false,
                 borderColor: 'rgb(0, 0, 0)',
                 backgroundColor: 'rgb(0, 0, 0)',
-                pointStyle: 'rect',
+                pointStyle: 'rectRot',
                 radius: 4,
                 data: greedyData
             }, {
@@ -193,7 +199,7 @@ function buildMovesScatterChart(rawData) {
                 radius: 4,
                 data: aStarData
             }, {
-                label: 'Machine Learning',
+                label: 'Decision Tree',
                 fill: false,
                 showLine: false,
                 borderColor: 'rgb(227, 27, 38)',
