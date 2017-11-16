@@ -77,11 +77,11 @@
 
     {% if title == 'data' %}
       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-      <script src="{{ request.static_url('electric_slide:static/charts/data-charts.js' )}}"></script>
+      <script src="{{ request.static_url('electric_slide:static/data-charts.js' )}}"></script>
       <script type="text/javascript">populateCharts()</script>
     {% endif %}
     {% if title == 'home' %}
-      <script src="../static/puzzle.js"></script>
+      <script src="{{ request.static_url('electric_slide:static/puzzle.js' )}}"></script>
     {% endif %}
 
   </body>
