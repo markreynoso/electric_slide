@@ -1,11 +1,11 @@
 # electric_slide
 
-**Authors**: Nathan Moore, Mark Reynoso, Megan Flood, Joseph Kim
+**Authors**: [Nathan Moore](https://github.com/nathancmoore), [Mark Reynoso](https://github.com/markreynoso), [Megan Flood](https://github.com/musflood), [Joseph Kim](https://github.com/jjskim)
 
 **Version**: 0.0.1
 
 ## Overview
-Electric_slide implements machine learning to efficiently solve the classic [sliding puzzle.](https://en.wikipedia.org/wiki/Sliding_puzzle)
+```electric_slide``` implements artificial intelligence and machine learning to efficiently solve the classic [sliding puzzle.](https://en.wikipedia.org/wiki/Sliding_puzzle)
 
 ## Getting Started
 - Clone down the repository to your local machine:
@@ -56,6 +56,7 @@ electric_slide $ . ENV/bin/activate
 
 - [Start Bootstrap](https://startbootstrap.com/template-overviews/bare/)
 
+- [Chart.js](http://www.chartjs.org/)
 
 ## Resources
 - prestoj - https://github.com/prestoj/15-puzzle/blob/master/neural_network.py.
