@@ -156,7 +156,9 @@ def test_determine_legal_moves_correct_number_of_moves(sol_board):
 
 def test_solve_returns_something(sol_board):
     """Test that the solve method doesn't return None."""
-    assert sol_board.solve([[1, 2, 9], [5, 6, 3], [4, 7, 8]])
+    with open("electric_slide/data/state_almanac_data.json") as f:
+        state_almanac = json.load(f)
+    assert sol_board.solve([[1, 2, 9], [5, 6, 3], [4, 7, 8]], state_almanac)
 
 with open("electric_slide/data/state_almanac_data.json") as f:
         state_almanac = json.load(f)
@@ -166,22 +168,28 @@ RANDOM_STATES = [json.loads(choice(list(state_almanac))) for i in range(20)]
 
 def test_solve_end_state_is_solved(sol_board):
     """Test that the state of the board after running solve is correct."""
-    sol_board.solve(choice(RANDOM_STATES))
+    with open("electric_slide/data/state_almanac_data.json") as f:
+        state_almanac = json.load(f)
+    sol_board.solve(choice(RANDOM_STATES), state_almanac)
     assert sol_board.state == [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 
 
 def test_solve_end_open_cell_coords(sol_board):
     """Test that the open cell of the board after running solve is correct."""
-    sol_board.solve(choice(RANDOM_STATES))
+    with open("electric_slide/data/state_almanac_data.json") as f:
+        state_almanac = json.load(f)
+    sol_board.solve(choice(RANDOM_STATES), state_almanac)
     assert sol_board.open_cell_coords == (3, 3)
 
 
 @pytest.mark.parametrize('state', RANDOM_STATES)
 def test_solve_solves_board_ideally(sol_board, state):
     """Test that the solve method solves in an ideal number of moves."""
+    with open("electric_slide/data/state_almanac_data.json") as f:
+        state_almanac = json.load(f)
     random_starting_state = state
     ideal_num_of_moves = state_almanac[str(state)]
-    assert sol_board.solve(random_starting_state) == ideal_num_of_moves
+    assert sol_board.solve(random_starting_state, state_almanac) == ideal_num_of_moves
 
 
 def test_empty_constructor_makes_pboard_error():

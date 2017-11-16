@@ -6,7 +6,7 @@ import json
 
 from copy import deepcopy
 
-from .board import Board, PracticeBoard
+from electric_slide.scripts.board import Board, PracticeBoard
 
 set_almanac = {0: {"[[1, 2, 3], [4, 5, 6], [7, 8, 9]]"}}
 
@@ -39,7 +39,7 @@ def generate_unique_states_from_sets(complexity, size=3):
             set_almanac[complexity + 1].add(str(pboard.practice_slide(move)))
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     for i in range(32):
         generate_unique_states_from_sets(i)
         print(str(i) + " : " + str(len(set_almanac[i])))

@@ -64,3 +64,83 @@ hr.divider {
 .map-container iframe.clicked {
   pointer-events: auto;
 }
+
+#puzzle-container {
+  text-align: center;
+  margin: auto;
+  height: 375px;
+  width: 375px;
+  position: relative;
+  background-color: darkgray;
+}
+
+.tile {
+  text-align: center;
+  float: left;
+  width: 122px;
+  margin: 1px;
+  height: 122px;
+  background-color: grey;
+  padding-top: 35px;
+  font-size: 30px;
+  color: rgba(255, 255, 255, .8);
+  position: absolute;
+  transition: .1s;
+  border-radius: 2px;
+}
+
+[id = '00'] {
+  left: 0px;
+  top: 0px;
+}
+
+[id = '01'] {
+  left: 125px;
+  top: 0px;
+}
+
+[id = '02'] {
+  left: 250px;
+  top: 0px;
+}
+
+[id = '10'] {
+  left: 0px;
+  top: 125px;
+}
+
+[id = '11'] {
+  left: 125px;
+  top: 125px;
+}
+
+[id = '12'] {
+  left: 250px;
+  top: 125px;
+}
+
+[id = '20'] {
+  left: 0px;
+  top: 250px;
+}
+
+[id = '21'] {
+  left: 125px;
+  top: 250px;
+}
+
+[id = '22'] {
+  /*background-color: darkgrey;*/
+  left: 250px;
+  top: 250px;
+}
+
+.tile-blank {
+    background-color: darkgrey;
+}
+
+.buttons {
+  margin: auto;
+  text-align: center;
+  margin-top: 20px;
+}

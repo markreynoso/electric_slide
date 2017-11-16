@@ -1,7 +1,8 @@
 """Comparator function for various solving methods."""
-
 from electric_slide.scripts.algorithm import a_star, greedy_pure_search
+
 from electric_slide.scripts.board import Board
+
 from copy import deepcopy
 import time
 import json
@@ -26,8 +27,9 @@ def comparator(starting_state):
 
     with open("electric_slide/data/a_star_data.json") as f:
         d = json.load(f)
-
-    d.setdefault(complexity, {"time": a_star_solve_time, "moves": a_star_moves})
+    d.setdefault(str(complexity), {"time": [], "moves": []})
+    d[str(complexity)]['time'].append(a_star_solve_time)
+    d[str(complexity)]['moves'].append(a_star_moves)
 
     with open('electric_slide/data/a_star_data.json', 'w') as file:
         json.dump(d, file)
@@ -39,7 +41,9 @@ def comparator(starting_state):
     with open("electric_slide/data/tree_data.json") as f:
         d = json.load(f)
 
-    d.setdefault(complexity, {"time": tree_solve_time, "moves": tree_moves})
+    d.setdefault(str(complexity), {"time": [], "moves": []})
+    d[str(complexity)]['time'].append(tree_solve_time)
+    d[str(complexity)]['moves'].append(tree_moves)
 
     with open('electric_slide/data/tree_data.json', 'w') as file:
         json.dump(d, file)
@@ -51,7 +55,9 @@ def comparator(starting_state):
     with open("electric_slide/data/greedy_data.json") as f:
         d = json.load(f)
 
-    d.setdefault(complexity, {"time": greedy_solve_time, "moves": greedy_moves})
+    d.setdefault(str(complexity), {"time": [], "moves": []})
+    d[str(complexity)]['time'].append(greedy_solve_time)
+    d[str(complexity)]['moves'].append(greedy_moves)
 
     with open('electric_slide/data/greedy_data.json', 'w') as file:
         json.dump(d, file)
@@ -61,8 +67,9 @@ def comparator(starting_state):
 if __name__ == "__main__":
     one_of_each_complexity = list(one_of_each)
 
-    for state in one_of_each_complexity:
-        print(comparator(json.loads(state)))
+    for _ in range(10):
+        for state in one_of_each_complexity:
+            print(comparator(json.loads(state)))
 
     # a = json.loads(choice(list(state_almanac)))
     # print(a)
