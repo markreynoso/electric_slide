@@ -19,23 +19,65 @@
     <strong>ALGORITHMS</strong>
   </h2>
   <hr class="divider">
-  <div id="puzzle-container">
-    <!-- data-coords in (y,x) order -->
-    <div id="one" class="tile" data-coords="1"><span>1</span></div>
-    <div id="two" class="tile" data-coords="2"><span>2</span></div>
-    <div id="three" class="tile" data-coords="3"><span>3</span></div>
-    <div id="four" class="tile" data-coords="4"><span>4</span></div>
-    <div id="five" class="tile" data-coords="5"><span>5</span></div>
-    <div id="six" class="tile" data-coords="6"><span>6</span></div>
-    <div id="seven" class="tile" data-coords="7"><span>7</span></div>
-    <div id="eight" class="tile" data-coords="8"><span>8</span></div>
-    <div id="nine" class="tile-blank" data-coords="9"><span></span></div>
+  <div class="solve-btns">
+      <div class="solve-one text-lg text-uppercase my-0"><p class="title">Greedy Best First</p></div>
+      <div class="solve-one text-lg text-uppercase my-0"><p class="title">A* Algorithm</p></div>
+      <div class="solve-one text-lg text-uppercase my-0"><p class="title">Decision Tree</p></div>
+    </div>
+  <div class="puzzles">
+    <div class="puzzle-container greedy">
+      <div class="greedy-loader ajax"><img src="{{ request.static_url('electric_slide:static/img/ajax-loader.gif' )}}" class="greedy-loader ajax"></div>
+      <!-- data-coords in (y,x) order -->
+      <div id="one" class="tile" data-coords="1"><span>1</span></div>
+      <div id="two" class="tile" data-coords="2"><span>2</span></div>
+      <div id="three" class="tile" data-coords="3"><span>3</span></div>
+      <div id="four" class="tile" data-coords="4"><span>4</span></div>
+      <div id="five" class="tile" data-coords="5"><span>5</span></div>
+      <div id="six" class="tile" data-coords="6"><span>6</span></div>
+      <div id="seven" class="tile" data-coords="7"><span>7</span></div>
+      <div id="eight" class="tile" data-coords="8"><span>8</span></div>
+      <div id="nine" class="tile-blank" data-coords="9"><span></span></div>
+    </div>
+    <div class="puzzle-container astar">
+      <div class="astar-loader ajax"><img src="{{ request.static_url('electric_slide:static/img/ajax-loader.gif' )}}"></div>
+      <!-- data-coords in (y,x) order -->
+      <div id="one" class="tile" data-coords="1"><span>1</span></div>
+      <div id="two" class="tile" data-coords="2"><span>2</span></div>
+      <div id="three" class="tile" data-coords="3"><span>3</span></div>
+      <div id="four" class="tile" data-coords="4"><span>4</span></div>
+      <div id="five" class="tile" data-coords="5"><span>5</span></div>
+      <div id="six" class="tile" data-coords="6"><span>6</span></div>
+      <div id="seven" class="tile" data-coords="7"><span>7</span></div>
+      <div id="eight" class="tile" data-coords="8"><span>8</span></div>
+      <div id="nine" class="tile-blank" data-coords="9"><span></span></div>
+    </div>
+    <div class="puzzle-container tree">
+      <div class="tree-loader ajax"><img src="{{ request.static_url('electric_slide:static/img/ajax-loader.gif' )}}" class="tree-loader ajax"></div>
+      <!-- data-coords in (y,x) order -->
+      <div id="one" class="tile" data-coords="1"><span>1</span></div>
+      <div id="two" class="tile" data-coords="2"><span>2</span></div>
+      <div id="three" class="tile" data-coords="3"><span>3</span></div>
+      <div id="four" class="tile" data-coords="4"><span>4</span></div>
+      <div id="five" class="tile" data-coords="5"><span>5</span></div>
+      <div id="six" class="tile" data-coords="6"><span>6</span></div>
+      <div id="seven" class="tile" data-coords="7"><span>7</span></div>
+      <div id="eight" class="tile" data-coords="8"><span>8</span></div>
+      <div id="nine" class="tile-blank" data-coords="9"><span></span></div>
+    </div>
   </div>
+  <div class="clearfix"></div>
   <div class="buttons">
-    <button class="btn btn-outline-danger"><a class="puzzle-button" id="shuffle-button">Shuffle</a></button>
-    <button class="btn btn-outline-danger"><a class="puzzle-button" id="greedy-button">Greedy</a></button>
-    <button class="btn btn-outline-danger"><a class="puzzle-button" id="astar-button">A-star</a></button>
-    <button class="btn btn-outline-danger"><a class="puzzle-button" id="tree-button">Decision Tree</a></button>
+    <div class="solve-btns">
+      <div class="solve-one"><button id="greedy-button" class="btn btn-outline-danger puzzle-button">Solve</button></div>
+      <div class="solve-one"><button id="astar-button" class="btn btn-outline-danger puzzle-button">Solve</button></div>
+      <div class="solve-one"><button id="tree-button" class="btn btn-outline-danger puzzle-button">Solve</button></div>
+    </div>
+    <div class="clearfix"></div>
+    <hr>
+    <div class="solve-btns">
+      <div class="all-btn"><button id="shuffle-button" class="btn btn-outline-danger puzzle-button">Shuffle All</button></div>
+      <div class="all-btn"><button id="all-button" class="btn btn-outline-danger puzzle-button">Solve All</button></div>
+    </div>
   </div>
 </div>
 
