@@ -12,6 +12,12 @@ def home_view(request):
     return {'title': 'home'}
 
 
+@view_config(route_name='nick', renderer='electric_slide:/templates/nick.jinja2')
+def home_view(request):
+    """View for the home page."""
+    return {'title': 'home'}
+
+
 @view_config(route_name='data', renderer='electric_slide:/templates/data.jinja2')
 def data_view(request):
     """View for the data page."""
