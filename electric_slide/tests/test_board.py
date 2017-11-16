@@ -156,12 +156,14 @@ def test_determine_legal_moves_correct_number_of_moves(sol_board):
 
 def test_solve_returns_something(sol_board):
     """Test that the solve method doesn't return None."""
-    assert sol_board.solve([[1, 2, 9], [5, 6, 3], [4, 7, 8]])
+    with open("electric_slide/data/state_almanac_data.json") as f:
+        state_almanac = json.load(f)
+    assert sol_board.solve([[1, 2, 9], [5, 6, 3], [4, 7, 8]], state_almanac)
 
 with open("electric_slide/data/state_almanac_data.json") as f:
         state_almanac = json.load(f)
 
-RANDOM_STATES = [json.loads(choice(list(state_almanac))) for i in range(1000)]
+RANDOM_STATES = [json.loads(choice(list(state_almanac))) for i in range(20)]
 
 
 def test_solve_end_state_is_solved(sol_board):
