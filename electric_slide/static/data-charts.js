@@ -223,9 +223,12 @@ function buildMovesScatterChart(rawData) {
     treeData = complexities.map(c => {
         return {x:c, y:rawData[c]['tree']['moves'][0]}
     })
+    treeDataPoint = Array(treeData.length).fill('star')
+
     aStarData = complexities.map(c => {
         return {x:c, y:rawData[c]['a_star']['moves'][0]}
     })
+    
     greedyData = complexities.reduce((data, c) => {
         allMoves = rawData[c]['greedy']['moves']
         avg = mean(allMoves)
@@ -266,6 +269,7 @@ function buildMovesScatterChart(rawData) {
                 borderColor: 'rgb(227, 27, 38)',
                 pointStyle: 'circle',
                 radius: 4,
+                borderWidth: 1,
                 data: aStarData
             }, {
                 label: 'Decision Tree',
@@ -273,7 +277,7 @@ function buildMovesScatterChart(rawData) {
                 showLine: false,
                 borderColor: 'rgb(227, 27, 38)',
                 backgroundColor: 'rgb(227, 27, 38)',
-                pointStyle: 'star',
+                pointStyle: treeDataPoint,
                 radius: 4,
                 data: treeData
             }]
