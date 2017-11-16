@@ -48,11 +48,11 @@ if __name__ == "__main__":  # pragma: no cover
         generate_unique_states_from_sets(i)
         print(str(i) + " : " + str(len(set_almanac[i])))
 
-    with open("electic_slide/data/state_almanac_data.json") as f:
+    with open("electric_slide/data/state_almanac_data.json") as f:
         state_almanac = json.load(f)
 
     for i in range(32):
         for state in set_almanac[i]:
             state_almanac.setdefault(str(deepcopy(state)), i)
-        with open('electic_slide/data/state_almanac_data.json', 'w') as file:
+        with open('electric_slide/data/state_almanac_data.json', 'w') as file:
             json.dump(state_almanac, file)
