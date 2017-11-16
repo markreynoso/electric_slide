@@ -1,4 +1,4 @@
-"""."""
+"""Algorithms for the AI of solving a sliding puzzle."""
 
 from electric_slide.scripts.priority_q import PriorityQ, Node
 
