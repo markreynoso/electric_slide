@@ -21,6 +21,7 @@ def data_view(request):
 
 @view_config(route_name='about', renderer='electric_slide:/templates/about.jinja2')
 def about_view(request):
+    """."""
     return {}
 
 
@@ -70,6 +71,22 @@ def solve_tree(request):
     b.solve(request.params["state"], state_almanac)
 
     return {"solution": b.previous_states}
+
+
+@view_config(route_name='astar', renderer='json')
+def solve_astar(request):
+    """Solve the current board using the A* method."""
+    from electric_slide.scripts.algorithm import a_star
+    state = request.params["state"]
+    return {"solution": a_star(state)}
+
+
+@view_config(route_name='greedy', renderer='json')
+def solve_greedy(request):
+    """Solve the current board using the Greedy method."""
+    from electric_slide.scripts.algorithm import greedy_pure_search
+    state = request.params["state"]
+    return {"solution": greedy_pure_search(state)}
 
 
 @view_config(route_name='shuffle', renderer='json')
