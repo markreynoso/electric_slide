@@ -33,7 +33,7 @@ def a_star(starting_state, heuristic=manhattan_distance):
                     available.push(node, value)
         curr = available.pop()
         visited.append(curr)
-    return list(reversed(curr.path()))
+    return list(reversed(curr.path()))  # heuristic is zero, i.e. solved
 
 
 def greedy_pure_search(starting_state, heuristic=manhattan_distance):
@@ -55,19 +55,4 @@ def greedy_pure_search(starting_state, heuristic=manhattan_distance):
                     available.push(node, value)
         curr = available.pop()
         visited.append(curr)
-    return list(reversed(curr.path()))
-
-
-if __name__ == '__main__':  # pragma: no cover
-    # print(a_star([[1, 2, 3], [4, 9, 8], [7, 6, 5]]))
-    import time
-    start = time.time()
-    print(greedy_pure_search([[6, 4, 7], [8, 5, 9], [3, 2, 1]]))
-    print(time.time() - start)
-    print(len(greedy_pure_search([[6, 4, 7], [8, 5, 9], [3, 2, 1]])))
-    print()
-    print()
-    start = time.time()
-    print(a_star([[6, 4, 7], [8, 5, 9], [3, 2, 1]]))
-    print(time.time() - start)
-    # print(len(a_star([[6, 4, 7], [8, 5, 9], [3, 2, 1]])))
+    return list(reversed(curr.path()))  # heuristic is zero, i.e. solved
