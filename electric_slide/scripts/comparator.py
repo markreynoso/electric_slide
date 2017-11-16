@@ -36,47 +36,7 @@ def record_solution_stats(file, solver, starting_state, complexity, almanac=None
     return solve_time, moves
 
 
-# def comparator(starting_state):
-#     """Compare the time and moves each algoithm takes to solve the same board."""
-#     with open("electric_slide/data/state_almanac_data.json") as f:
-#         state_almanac = json.load(f)
-
-#     b = Board()
-
-#     complexity = state_almanac[str(starting_state)]
-
-#     state_copy = deepcopy(starting_state)
-
-#     a_star_data = record_solution_stats('a_star_data.json', a_star,
-#                                         starting_state, complexity)
-#     a_star_solve_time, a_star_moves = a_star_data
-
-#     tree_data = record_solution_stats('tree_data.json', b.solve, starting_state,
-#                                       complexity, state_almanac)
-#     tree_solve_time, tree_moves = tree_data
-
-#     greedy_data = record_solution_stats('greedy_data.json', greedy_pure_search,
-#                                         state_copy, complexity)
-#     greedy_solve_time, greedy_moves = greedy_data
-
-#     return """
-
-# Complexity: {}
-
-#  Tree Time: {} ms
-#  Tree Moves: {}
-
-#  A* Time: {} ms
-#  A* Moves: {}
-
-#  Greedy Time: {} ms
-#  Greedy Moves: {}
-
-#  """.format(complexity, tree_solve_time, tree_moves, a_star_solve_time,
-#             a_star_moves, greedy_solve_time, greedy_moves)
-
-
-def diversify_state_sampling(file, solver, complexity, almanac, tree=False):
+def diversify_state_sampling(file, solver, complexity, almanac, tree=False):  # pragma: no cover
     """Record the time and moves a solver takes for a random set of states."""
     states = list(filter(lambda state: almanac[state] == complexity, almanac))
     rand_states = sample(states, min(10, len(states)))
@@ -90,7 +50,7 @@ def diversify_state_sampling(file, solver, complexity, almanac, tree=False):
               \n {solver} Moves: {}'.format(delta_t, moves, solver=solver.__name__))
 
 
-def diversify_comparator():
+def diversify_comparator():  # pragma: no cover
     """Compare the time and moves each algoithm takes to solve the same board."""
     with open("electric_slide/data/state_almanac_data.json") as f:
         state_almanac = json.load(f)
@@ -111,10 +71,4 @@ def diversify_comparator():
 
 
 if __name__ == "__main__":
-    # one_of_each_complexity = list(one_of_each)
-
-    # for _ in range(10):
-    #     for state in one_of_each_complexity:
-    #         print(comparator(json.loads(state)))
-
     diversify_comparator()
