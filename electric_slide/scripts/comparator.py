@@ -86,8 +86,8 @@ def diversify_state_sampling(file, solver, complexity, almanac, tree=False):
             delta_t, moves = record_solution_stats(file, solver, state, complexity, almanac)
         else:
             delta_t, moves = record_solution_stats(file, solver, state, complexity)
-        print('\n\n {solver} Time: {} ms\n {solver} Moves: {}'.format(delta_t, moves,
-                                                                      solver=solver.__name__))
+        print('\n {solver} Time: {} ms\
+              \n {solver} Moves: {}'.format(delta_t, moves, solver=solver.__name__))
 
 
 def diversify_comparator():
@@ -98,15 +98,15 @@ def diversify_comparator():
     b = Board()
 
     for c in range(32):
-        print('Complexity: {}')
+        print('\nComplexity: {}'.format(c))
         diversify_state_sampling('greedy_data.json', greedy_pure_search, c, state_almanac)
 
     for c in range(32):
-        print('Complexity: {}')
+        print('\nComplexity: {}'.format(c))
         diversify_state_sampling('tree_data.json', b.solve, c, state_almanac, True)
 
     for c in range(32):
-        print('Complexity: {}')
+        print('\nComplexity: {}'.format(c))
         diversify_state_sampling('a_star_data.json', a_star, c, state_almanac)
 
 
@@ -118,10 +118,3 @@ if __name__ == "__main__":
     #         print(comparator(json.loads(state)))
 
     diversify_comparator()
-
-    # a = json.loads(choice(list(state_almanac)))
-    # print(a)
-
-    # print(comparator(a))
-
-    # print(comparator([[6, 4, 7], [8, 5, 9], [3, 2, 1]])) this is a 31

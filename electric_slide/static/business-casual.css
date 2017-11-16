@@ -144,3 +144,7 @@ hr.divider {
   text-align: center;
   margin-top: 20px;
 }
+
+.btn {
+  cursor: pointer;
+}

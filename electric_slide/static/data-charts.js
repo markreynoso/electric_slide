@@ -100,7 +100,7 @@ function buildTimeScatterChart(rawData) {
                 showLine: false,
                 borderColor: 'rgb(0, 0, 0)',
                 backgroundColor: 'rgb(0, 0, 0)',
-                pointStyle: 'rect',
+                pointStyle: 'rectRot',
                 radius: 4,
                 data: greedyData
             }, {
@@ -166,8 +166,11 @@ function buildMovesScatterChart(rawData) {
         return {x:c, y:rawData[c]['a_star']['moves'][0]}
     })
     greedyData = complexities.reduce((data, c) => {
-        for (let i = 0; i < rawData[c]['greedy']['moves'].length; i++) {
-            data.push({x:c, y:rawData[c]['greedy']['moves'][i]})
+        allMoves = rawData[c]['greedy']['moves']
+        for (let i = 0; i < allMoves.length; i++) {
+            if (allMoves.indexOf(allMoves[i]) == i) {
+                data.push({x:c, y:allMoves[i]})
+            }
         }
         return data
     }, [])
@@ -184,7 +187,7 @@ function buildMovesScatterChart(rawData) {
                 showLine: false,
                 borderColor: 'rgb(0, 0, 0)',
                 backgroundColor: 'rgb(0, 0, 0)',
-                pointStyle: 'rect',
+                pointStyle: 'rectRot',
                 radius: 4,
                 data: greedyData
             }, {
