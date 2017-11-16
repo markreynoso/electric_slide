@@ -110,6 +110,32 @@
           <strong>SLIDER PUZZLE</strong>
         </h2>
         <hr class="divider">
+        <div id="puzzle-container">
+          <!-- data-coords in (y,x) order -->
+          <div id="one" class="tile" data-coords="1"><span>1</span></div>
+          <div id="two" class="tile" data-coords="2"><span>2</span></div>
+          <div id="three" class="tile" data-coords="3"><span>3</span></div>
+          <div id="four" class="tile" data-coords="4"><span>4</span></div>
+          <div id="five" class="tile" data-coords="5"><span>5</span></div>
+          <div id="six" class="tile" data-coords="6"><span>6</span></div>
+          <div id="seven" class="tile" data-coords="7"><span>7</span></div>
+          <div id="eight" class="tile" data-coords="8"><span>8</span></div>
+          <div id="nine" class="tile-blank" data-coords="9"><span></span></div>
+        </div>
+        <div class="buttons">
+          <a class="puzzle-button" href="">Shuffle</a>
+          <a class="puzzle-button" href="">Greedy</a>
+          <a class="puzzle-button" href="">A-star</a>
+          <a class="puzzle-button" href="">Decision Tree</a>
+        </div>
+      </div>
+
+      <div class="bg-faded p-4 my-4">
+        <hr class="divider">
+        <h2 class="text-center text-lg text-uppercase my-0">Why solve a
+          <strong>slider puzzle</strong>
+        </h2>
+        <hr class="divider">
         <img class="img-fluid float-left mr-4 d-none d-lg-block" src="../static/img/pupper.png" alt="">
         <p>Also known as an "8-puzzle," a 3x3 slider puzzle is a simple game with 8 tiles on a 3x3 grid.
           Typically, the 8 tiles are either numbered 1-8 or form a picture when in order. The open tile space allows for adjacent tiles to slide into it.</p>
@@ -140,6 +166,8 @@
     <!-- Bootstrap core JavaScript -->
     <script src="../static/jquery/jquery.min.js"></script>
     <script src="../static/popper/popper.js"></script>
+    <script src="../static/puzzle.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="../static/bootstrap/js/bootstrap.min.js"></script>
 
   </body>
