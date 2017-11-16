@@ -1,15 +1,9 @@
 """."""
 
-# from pyramid.response import Response
+from pyramid.response import Response
 from pyramid.view import view_config
-<<<<<<< HEAD
-import json
-
-
-=======
 from electric_slide.scripts.board import Board
 import json
->>>>>>> master
 
 
 @view_config(route_name='home', renderer='electric_slide:/templates/index.jinja2')

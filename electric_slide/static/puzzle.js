@@ -21,11 +21,9 @@ function treeSolve() {
 
 
 function shuffle() {
-    $.ajax({
-        url: '/api/shuffle/',
-        success: function(data) {
-            startBoard(data)
-        }
+    $.get('/api/shuffle', function(data) {
+        startingState = data['shuffle']
+        startBoard(data['shuffle']);
     });
 }
 
