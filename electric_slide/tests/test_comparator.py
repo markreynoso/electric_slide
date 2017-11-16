@@ -39,3 +39,6 @@ def test_record_output_types_greedy(state, comp):
     time, moves = record_solution_stats('test_data.json', greedy_pure_search, state, comp)
     assert type(time) == float
     assert type(moves) == int
+
+with open('electric_slide/data/test_data.json', 'w') as file:
+            json.dump({}, file)
