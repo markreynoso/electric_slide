@@ -10,18 +10,18 @@ import json
 @view_config(route_name='home', renderer='electric_slide:/templates/index.jinja2')
 def home_view(request):
     """."""
-    return {}
+    return {'title': 'home'}
 
 
 @view_config(route_name='data', renderer='electric_slide:/templates/data.jinja2')
 def data_view(request):
     """."""
-    return {}
+    return {'title': 'data'}
 
 
 @view_config(route_name='about', renderer='electric_slide:/templates/about.jinja2')
 def about_view(request):
-    return {}
+    return {'title': 'about'}
 
 
 @view_config(route_name='states-data', renderer='json')
