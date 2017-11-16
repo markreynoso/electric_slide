@@ -41,4 +41,4 @@ def test_record_output_types_greedy(state, comp):
     assert type(moves) == int
 
 with open('electric_slide/data/test_data.json', 'w') as file:
-            json.dump({}, file)
+    json.dump({}, file)

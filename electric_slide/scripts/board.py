@@ -10,12 +10,12 @@ class PracticeBoard(object):
     def __init__(self, state):
         """Constructor for the PracticeBoard class."""
         self.practice_state = deepcopy(state)
+        self.practice_size = len(state)
 
         flat = [val for row in state for val in row]
         empty = flat.index(9)
-        coords = (empty % 3 + 1, empty // 3 + 1)
+        coords = (empty % self.practice_size + 1, empty // self.practice_size + 1)
         self.practice_open_cell_coords = coords
-        self.practice_size = len(state)
 
     def practice_slide(self, coords):
         """Slide the tile at the given coordinates into the open cell."""
