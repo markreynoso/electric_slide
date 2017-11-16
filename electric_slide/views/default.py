@@ -1,8 +1,7 @@
 """."""
 
-# from pyramid.response import Response
+from pyramid.response import Response
 from pyramid.view import view_config
-
 from electric_slide.scripts.board import Board
 import json
 
@@ -68,7 +67,7 @@ def solve_tree(request):
     with open("electric_slide/data/state_almanac_data.json") as f:
         state_almanac = json.load(f)
     b = Board()
-    b.solve(request.params["state"], state_almanac)
+    b.solve(json.loads(request.params["state"]), state_almanac)
 
     return {"solution": b.previous_states}
 
@@ -77,7 +76,7 @@ def solve_tree(request):
 def solve_astar(request):
     """Solve the current board using the A* method."""
     from electric_slide.scripts.algorithm import a_star
-    state = request.params["state"]
+    state = json.loads(request.params["state"])
     return {"solution": a_star(state)}
 
 
@@ -85,7 +84,7 @@ def solve_astar(request):
 def solve_greedy(request):
     """Solve the current board using the Greedy method."""
     from electric_slide.scripts.algorithm import greedy_pure_search
-    state = request.params["state"]
+    state = json.loads(request.params["state"])
     return {"solution": greedy_pure_search(state)}
 
 
