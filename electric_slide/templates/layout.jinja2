@@ -80,6 +80,9 @@
       <script src="{{ request.static_url('electric_slide:static/charts/data-charts.js' )}}"></script>
       <script type="text/javascript">populateCharts()</script>
     {% endif %}
+    {% if title == 'home' %}
+      <script src="../static/puzzle.js"></script>
+    {% endif %}
 
   </body>
 

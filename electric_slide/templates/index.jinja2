@@ -2,9 +2,8 @@
 
 {% block content %}
 
-<div class="bg-faded p-4 my-4">
 
-  <!-- Welcome Message -->
+<div class="bg-faded p-4 my-4">
   <div class="text-center mt-4">
     <div class="text-heading text-muted text-lg">Welcome To</div>
     <h1 class="my-2">Electric Slide</h1>
@@ -16,11 +15,36 @@
 
 <div class="bg-faded p-4 my-4">
   <hr class="divider">
+  <h2 class="text-center text-lg text-uppercase my-0">Demonstration of the
+    <strong>ALGORITHMS</strong>
+  </h2>
+  <hr class="divider">
+  <div id="puzzle-container">
+    <!-- data-coords in (y,x) order -->
+    <div id="one" class="tile" data-coords="1"><span>1</span></div>
+    <div id="two" class="tile" data-coords="2"><span>2</span></div>
+    <div id="three" class="tile" data-coords="3"><span>3</span></div>
+    <div id="four" class="tile" data-coords="4"><span>4</span></div>
+    <div id="five" class="tile" data-coords="5"><span>5</span></div>
+    <div id="six" class="tile" data-coords="6"><span>6</span></div>
+    <div id="seven" class="tile" data-coords="7"><span>7</span></div>
+    <div id="eight" class="tile" data-coords="8"><span>8</span></div>
+    <div id="nine" class="tile-blank" data-coords="9"><span></span></div>
+  </div>
+  <div class="buttons">
+    <button class="btn btn-outline-danger"><a class="puzzle-button" id="shuffle-button">Shuffle</a></button>
+    <button class="btn btn-outline-danger"><a class="puzzle-button" id="greedy-button">Greedy</a></button>
+    <button class="btn btn-outline-danger"><a class="puzzle-button" id="astar-button">A-star</a></button>
+    <button class="btn btn-outline-danger"><a class="puzzle-button" id="tree-button">Decision Tree</a></button>
+  </div>
+</div>
+
+<div class="bg-faded p-4 my-4">
+  <hr class="divider">
   <h2 class="text-center text-lg text-uppercase my-0">What is a
     <strong>SLIDER PUZZLE</strong>
   </h2>
   <hr class="divider">
-  <img class="img-fluid float-left mr-4 d-none d-lg-block" src="../static/img/pupper.png" alt="">
   <p>Also known as an "8-puzzle," a 3x3 slider puzzle is a simple game with 8 tiles on a 3x3 grid.
     Typically, the 8 tiles are either numbered 1-8 or form a picture when in order. The open tile space allows for adjacent tiles to slide into it.</p>
   <p>The object of the game is to start from a scrambled state and, through sliding, to assemble the
@@ -39,3 +63,4 @@
 </div>
 
 {% endblock %}
+

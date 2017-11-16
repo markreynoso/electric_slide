@@ -1,8 +1,7 @@
 """."""
 
-# from pyramid.response import Response
+from pyramid.response import Response
 from pyramid.view import view_config
-
 from electric_slide.scripts.board import Board
 import json
 
@@ -21,6 +20,7 @@ def data_view(request):
 
 @view_config(route_name='about', renderer='electric_slide:/templates/about.jinja2')
 def about_view(request):
+    """."""
     return {'title': 'about'}
 
 
@@ -67,9 +67,25 @@ def solve_tree(request):
     with open("electric_slide/data/state_almanac_data.json") as f:
         state_almanac = json.load(f)
     b = Board()
-    b.solve(request.params["state"], state_almanac)
+    b.solve(json.loads(request.params["state"]), state_almanac)
 
     return {"solution": b.previous_states}
+
+
+@view_config(route_name='astar', renderer='json')
+def solve_astar(request):
+    """Solve the current board using the A* method."""
+    from electric_slide.scripts.algorithm import a_star
+    state = json.loads(request.params["state"])
+    return {"solution": a_star(state)}
+
+
+@view_config(route_name='greedy', renderer='json')
+def solve_greedy(request):
+    """Solve the current board using the Greedy method."""
+    from electric_slide.scripts.algorithm import greedy_pure_search
+    state = json.loads(request.params["state"])
+    return {"solution": greedy_pure_search(state)}
 
 
 @view_config(route_name='shuffle', renderer='json')
