@@ -41,7 +41,9 @@ function buildStateDistributionChart(rawData) {
             labels: Object.keys(rawData),
             datasets: [{
                 data: Object.values(rawData), 
-                borderColor: 'rgb(227, 27, 38)'
+                borderColor: 'rgb(227, 27, 38)',
+                borderWidth: 2,
+                pointBorderWidth: 1
             }]
         },
 
@@ -69,23 +71,74 @@ function buildStateDistributionChart(rawData) {
 
 function buildTimeScatterChart(rawData) {
     complexities = Object.keys(rawData)
+
     treeData = complexities.reduce((data, c) => {
-        for (let i = 0; i < rawData[c]['tree']['time'].length; i++) {
-            data.push({x:c, y:rawData[c]['tree']['time'][i]})
+        allMoves = rawData[c]['tree']['time']
+        if (c == '0') {
+            data.push({x:c, y:allMoves[0].toFixed(3)})
+            data.push({x:c, y:allMoves[0].toFixed(3)})
+            data.push({x:c, y:allMoves[0].toFixed(3)})
+            data.push({x:c, y:NaN})
+        } else {
+            data.push({x:c, y:mean(allMoves).toFixed(3)})
+            data.push({x:c, y:topQuartile(allMoves).toFixed(3)})
+            data.push({x:c, y:bottomQuartile(allMoves).toFixed(3)})
+            data.push({x:c, y:NaN})
         }
         return data
     }, [])
+    treeDataPoints = complexities.reduce((points, c) => {
+        points.push('star')
+        points.push('line')
+        points.push('line')
+        points.push('line')
+        return points
+    }, [])
+
     aStarData = complexities.reduce((data, c) => {
-        for (let i = 0; i < rawData[c]['a_star']['time'].length; i++) {
-            data.push({x:c, y:rawData[c]['a_star']['time'][i]})
+        allMoves = rawData[c]['a_star']['time']
+        if (c == '0') {
+            data.push({x:c, y:allMoves[0].toFixed(3)})
+            data.push({x:c, y:allMoves[0].toFixed(3)})
+            data.push({x:c, y:allMoves[0].toFixed(3)})
+            data.push({x:c, y:NaN})
+        } else {
+            data.push({x:c, y:mean(allMoves).toFixed(3)})
+            data.push({x:c, y:topQuartile(allMoves).toFixed(3)})
+            data.push({x:c, y:bottomQuartile(allMoves).toFixed(3)})
+            data.push({x:c, y:NaN})
         }
         return data
     }, [])
+    aStarDataPoints = complexities.reduce((points, c) => {
+        points.push('circle')
+        points.push('line')
+        points.push('line')
+        points.push('line')
+        return points
+    }, [])
+
     greedyData = complexities.reduce((data, c) => {
-        for (let i = 0; i < rawData[c]['greedy']['time'].length; i++) {
-            data.push({x:c, y:rawData[c]['greedy']['time'][i]})
+        allMoves = rawData[c]['greedy']['time']
+        if (c == '0') {
+            data.push({x:c, y:allMoves[0].toFixed(3)})
+            data.push({x:c, y:allMoves[0].toFixed(3)})
+            data.push({x:c, y:allMoves[0].toFixed(3)})
+            data.push({x:c, y:NaN})
+        } else {
+            data.push({x:c, y:mean(allMoves).toFixed(3)})
+            data.push({x:c, y:topQuartile(allMoves).toFixed(3)})
+            data.push({x:c, y:bottomQuartile(allMoves).toFixed(3)})
+            data.push({x:c, y:NaN})
         }
         return data
+    }, [])
+    greedyDataPoints = complexities.reduce((points, c) => {
+        points.push('rectRot')
+        points.push('line')
+        points.push('line')
+        points.push('line')
+        return points
     }, [])
 
     let ctx = document.getElementById('timeChart').getContext('2d');
@@ -97,29 +150,32 @@ function buildTimeScatterChart(rawData) {
             datasets: [{
                 label: 'Greedy Algoritm',
                 fill: false,
-                showLine: false,
+                borderWidth: 1,
                 borderColor: 'rgb(0, 0, 0)',
                 backgroundColor: 'rgb(0, 0, 0)',
-                pointStyle: 'rectRot',
+                pointStyle: greedyDataPoints,
                 radius: 4,
-                data: greedyData
+                data: greedyData,
+                spanGaps: false
             }, {
                 label: 'A* Algoritm',
                 fill: false,
-                showLine: false,
+                borderWidth: 1,
                 borderColor: 'rgb(227, 27, 38)',
-                pointStyle: 'circle',
+                pointStyle: aStarDataPoints,
                 radius: 4,
-                data: aStarData
+                data: aStarData,
+                spanGaps: false
             }, {
                 label: 'Decision Tree',
                 fill: false,
-                showLine: false,
+                borderWidth: 1,
                 borderColor: 'rgb(227, 27, 38)',
                 backgroundColor: 'rgb(227, 27, 38)',
-                pointStyle: 'star',
+                pointStyle: treeDataPoints,
                 radius: 4,
-                data: treeData
+                data: treeData,
+                spanGaps: false
             }]
         },
 
@@ -151,6 +207,11 @@ function buildTimeScatterChart(rawData) {
                         labelString: 'Number of Moves from Solution',
                     }
                 }]
+            },
+            elements: {
+                line: {
+                    tension: 0,
+                }
             }
         }
 
@@ -162,17 +223,27 @@ function buildMovesScatterChart(rawData) {
     treeData = complexities.map(c => {
         return {x:c, y:rawData[c]['tree']['moves'][0]}
     })
+    treeDataPoint = Array(treeData.length).fill('star')
+
     aStarData = complexities.map(c => {
         return {x:c, y:rawData[c]['a_star']['moves'][0]}
     })
+    
     greedyData = complexities.reduce((data, c) => {
         allMoves = rawData[c]['greedy']['moves']
-        for (let i = 0; i < allMoves.length; i++) {
-            if (allMoves.indexOf(allMoves[i]) == i) {
-                data.push({x:c, y:allMoves[i]})
-            }
-        }
+        avg = mean(allMoves)
+        data.push({x:c, y:avg.toFixed(3)})
+        data.push({x:c, y:allMoves.reduce((a, b) => Math.min(a, b))})
+        data.push({x:c, y:allMoves.reduce((a, b) => Math.max(a, b))})
+        data.push({x:c, y:NaN})
         return data
+    }, [])
+    greedyDataPoints = complexities.reduce((points, c) => {
+        points.push('rectRot')
+        points.push('line')
+        points.push('line')
+        points.push('line')
+        return points
     }, [])
 
     let ctx = document.getElementById('movesChart').getContext('2d');
@@ -184,12 +255,13 @@ function buildMovesScatterChart(rawData) {
             datasets: [{
                 label: 'Greedy Algoritm',
                 fill: false,
-                showLine: false,
+                borderWidth: 1,
                 borderColor: 'rgb(0, 0, 0)',
                 backgroundColor: 'rgb(0, 0, 0)',
-                pointStyle: 'rectRot',
+                pointStyle: greedyDataPoints,
                 radius: 4,
-                data: greedyData
+                data: greedyData,
+                spanGaps: false
             }, {
                 label: 'A* Algoritm',
                 fill: false,
@@ -197,6 +269,7 @@ function buildMovesScatterChart(rawData) {
                 borderColor: 'rgb(227, 27, 38)',
                 pointStyle: 'circle',
                 radius: 4,
+                borderWidth: 1,
                 data: aStarData
             }, {
                 label: 'Decision Tree',
@@ -204,7 +277,7 @@ function buildMovesScatterChart(rawData) {
                 showLine: false,
                 borderColor: 'rgb(227, 27, 38)',
                 backgroundColor: 'rgb(227, 27, 38)',
-                pointStyle: 'star',
+                pointStyle: treeDataPoint,
                 radius: 4,
                 data: treeData
             }]
@@ -238,8 +311,29 @@ function buildMovesScatterChart(rawData) {
                         labelString: 'Number of Moves from Solution',
                     }
                 }]
+            },
+            elements: {
+                line: {
+                    tension: 0,
+                }
             }
         }
 
     });
+}
+
+function mean(values) {
+    return values.reduce((sum, n) => sum + n) / values.length
+}
+
+function topQuartile(values) {
+    middle = mean(values)
+    topHalf = values.filter(n => n > middle)
+    return mean(topHalf)
+}
+
+function bottomQuartile(values) {
+    middle = mean(values)
+    bottomHalf = values.filter(n => n < middle)
+    return mean(bottomHalf)
 }
