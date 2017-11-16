@@ -92,8 +92,8 @@ hr.divider {
   width: 31%;
   height: 31%;
   background-color: grey;
-  padding-top: 1.5vw;
-  font-size: 30px;
+  padding-top: .5vw;
+  font-size: 4vw;
   color: rgba(255, 255, 255, .8);
   position: absolute;
   transition: .1s;
@@ -175,7 +175,7 @@ hr.divider {
 }
 
 .title {
-  font-weight: 200;
+  font-weight: 400;
   margin-bottom: 0;
 }
 
@@ -189,4 +189,38 @@ hr.divider {
 
 .ajax img {
   width: 10vw;
+}
+
+@media (max-width: 775px) {
+  .title {
+    font-size: 4vw;
+  }
+  #greedy-button{
+    width: 20vw;
+    height: 10vw;
+    font-size: 5vw;
+  }
+  #astar-button{
+    width: 20vw;
+    height: 10vw;
+    font-size: 5vw;
+  }
+  #tree-button{
+    width: 20vw;
+    height: 10vw;
+    font-size: 5vw;
+  }
+  #all-button {
+    width: 30vw;
+    height: 10vw;
+    font-size: 5vw; 
+  }
+  #shuffle-button {
+    width: 30vw;
+    height: 10vw;
+    font-size: 5vw;
+  }
+  .all-btn {
+    width: 33vw;
+  }
 }
