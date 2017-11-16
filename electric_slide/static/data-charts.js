@@ -77,7 +77,9 @@ function buildTimeScatterChart(rawData) {
     }, [])
     aStarData = complexities.reduce((data, c) => {
         for (let i = 0; i < rawData[c]['a_star']['time'].length; i++) {
-            data.push({x:c, y:rawData[c]['a_star']['time'][i]})
+            if (rawData[c]['a_star']['time'][i] < 250000) {
+                data.push({x:c, y:rawData[c]['a_star']['time'][i]})
+            }
         }
         return data
     }, [])
@@ -174,6 +176,22 @@ function buildMovesScatterChart(rawData) {
         }
         return data
     }, [])
+    greedyDataAvg = complexities.reduce((data, c) => {
+        allMoves = rawData[c]['greedy']['moves']
+        avg = allMoves.reduce((sum, n) => sum + n) / allMoves.length
+        data.push({x:c, y:avg.toFixed(3)})
+        data.push({x:c, y:allMoves.reduce((a, b) => Math.min(a, b))})
+        data.push({x:c, y:allMoves.reduce((a, b) => Math.max(a, b))})
+        data.push({x:c, y:NaN})
+        return data
+    }, [])
+    greedyDataPoints = complexities.reduce((points, c) => {
+        points.push('rectRot')
+        points.push('line')
+        points.push('line')
+        points.push('line')
+        return points
+    }, [])
 
     let ctx = document.getElementById('movesChart').getContext('2d');
 
@@ -184,12 +202,13 @@ function buildMovesScatterChart(rawData) {
             datasets: [{
                 label: 'Greedy Algoritm',
                 fill: false,
-                showLine: false,
+                borderWidth: 2,
                 borderColor: 'rgb(0, 0, 0)',
                 backgroundColor: 'rgb(0, 0, 0)',
-                pointStyle: 'rectRot',
+                pointStyle: greedyDataPoints,
                 radius: 4,
-                data: greedyData
+                data: greedyDataAvg,
+                spanGaps: false
             }, {
                 label: 'A* Algoritm',
                 fill: false,
