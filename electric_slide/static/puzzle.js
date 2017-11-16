@@ -5,26 +5,50 @@ var solutionList = [[[6, 4, 7], [8, 5, 9], [3, 2, 1]], [[6, 4, 9], [8, 5, 7], [3
 var startingState;
 
 function greedySolve() {
-    solutionList = $ajax(get, greedy(current_state))
-    solveBoard()
+    $.get({
+        url: '/api/solve/greedy',
+        data: {'state': JSON.stringify(startingState)},
+        success: function(data) {
+            solutionList = data['solution']
+            console.log(solutionList)
+            timer();
+        }
+    });
 }
 
 
 function astarSolve() {
-
+    $.get({
+        url: '/api/solve/astar',
+        data: {'state': JSON.stringify(startingState)},
+        success: function(data) {
+            solutionList = data['solution']
+            console.log(solutionList)
+            timer();
+        }
+    });
 }
 
 
 function treeSolve() {
-
+    $.get({
+        url: '/api/solve/tree',
+        data: {'state': JSON.stringify(startingState)},
+        success: function(data) {
+            solutionList = data['solution']
+            console.log(solutionList)
+            timer();
+        }
+    });
 }
 
 
 function shuffle() {
     $.get('/api/shuffle', function(data) {
         startingState = data['shuffle']
-        startBoard(data['shuffle']);
-    });
+        startBoard(startingState);
+        console.log(startingState);
+    }).then(console.log(startingState));
 }
 
 
@@ -42,7 +66,7 @@ function timer() {
 }
 
 
-function solveBoard() {
+function solveBoard(interval) {
     if (solutionList.length > 1) {
         solutionList.shift()
         for (var i = 0; i < 3; i++) {
@@ -50,6 +74,8 @@ function solveBoard() {
                 $("div").find("[data-coords='" + solutionList[0][i][j] + "']").attr('id', '' + i + j)
             }
         }
+    } else {
+        clearInterval(interval)
     }
 }
 
@@ -62,4 +88,16 @@ $('#puzzle-container').one('click', function() {
 
 $('#shuffle-button').on('click', function() {
     shuffle();
+});
+
+$('#astar-button').on('click', function() {
+    astarSolve();
+});
+
+$('#greedy-button').on('click', function() {
+    greedySolve();
+});
+
+$('#tree-button').on('click', function() {
+    treeSolve();
 });

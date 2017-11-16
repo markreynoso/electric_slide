@@ -75,10 +75,10 @@ class Board(object):
 
     def slide(self, coords):
         """Slide the tile at the given coordinates into the open cell."""
-        self.previous_states.append(self.state)
         ox, oy = self.open_cell_coords[0] - 1, self.open_cell_coords[1] - 1
         x, y = coords[0] - 1, coords[1] - 1
         self.state[oy][ox], self.state[y][x] = self.state[y][x], self.state[oy][ox]
+        self.previous_states.append(deepcopy(self.state))
         self.open_cell_coords = coords
 
         self._determine_legal_moves(coords)
@@ -123,7 +123,7 @@ class Board(object):
     def solve(self, starting_state, almanac):
         """Solve the board, given a starting board state."""
         state_almanac = almanac
-        self.previous_states = []
+        self.previous_states = [deepcopy(self.state)]
         self.state = starting_state
         open_y = 1
         open_x = 1
