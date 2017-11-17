@@ -8,7 +8,7 @@
 ```electric_slide``` implements artificial intelligence and machine learning to efficiently solve the classic [sliding puzzle.](https://en.wikipedia.org/wiki/Sliding_puzzle)
 
 ## Website
-[Check it out](https://electric-slide.herokuapp.com)
+[Check it out](http://electric-slide.herokuapp.com)
 
 ## Getting Started
 - Clone down the repository to your local machine:
@@ -47,9 +47,9 @@ electric_slide $ . ENV/bin/activate
 | /api/data/states | states-data | Returns number of states at each complexity level |
 | /api/data/solve | solving-data | Returns time and moves required by each algorithm to solve |
 | /api/shuffle | shuffle | Return a shuffled board state |
-| /api/solve/tree | tree | Return a list of moves to solve the given board state, determined by the decision tree |
-| /api/solve/greedy | greedy | Returns a list of moves to solve the given board state, determined by the greedy pure-heuristic algorithm |
-| /api/solve/astar | astar | Returns a list of moves to solve the given board state, determined by the A* heuristic algorithm |
+| /api/solve/tree | tree | Return a list of moves to solve the given board state, determined by the decision tree<br>Params: state = board state to solve, in the form "[[1,2,3],[4,5,6],[7,8,9]]" |
+| /api/solve/greedy | greedy | Returns a list of moves to solve the given board state, determined by the greedy pure-heuristic algorithm<br>Params: state = board state to solve, in the form "[[1,2,3],[4,5,6],[7,8,9]]" |
+| /api/solve/astar | astar | Returns a list of moves to solve the given board state, determined by the A* heuristic algorithm<br>Params: state = board state to solve, in the form "[[1,2,3],[4,5,6],[7,8,9]]" |
 
 ## Built With:
 
@@ -65,4 +65,5 @@ electric_slide $ . ENV/bin/activate
 - prestoj - https://github.com/prestoj/15-puzzle/blob/master/neural_network.py.
 
 ## Change Log
+- 11-17-2017 12:09pm - Completed the all the algorithms and the routes. Live on Heroku.
 - 11-02-2017 3:50pm - Updated README.
