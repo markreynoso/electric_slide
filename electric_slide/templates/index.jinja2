@@ -36,6 +36,7 @@
   <div class="puzzles">
     <div class="puzzle-container greedy">
       <div class="greedy-loader ajax"><img src="{{ request.static_url('electric_slide:static/img/ajax-loader.gif' )}}" class="greedy-loader ajax"></div>
+      <div class="greedy-error ajax"><img src="{{ request.static_url('electric_slide:static/img/oops.png' )}}"></div>
       <!-- data-coords in (y,x) order -->
       <div class="tile" data-coords="1"><span>1</span></div>
       <div class="tile" data-coords="2"><span>2</span></div>
@@ -49,6 +50,7 @@
     </div>
     <div class="puzzle-container astar">
       <div class="astar-loader ajax"><img src="{{ request.static_url('electric_slide:static/img/ajax-loader.gif' )}}"></div>
+      <div class="astar-error ajax"><img src="{{ request.static_url('electric_slide:static/img/oops.png' )}}"></div>
       <!-- data-coords in (y,x) order -->
       <div class="tile" data-coords="1"><span>1</span></div>
       <div class="tile" data-coords="2"><span>2</span></div>
@@ -62,6 +64,7 @@
     </div>
     <div class="puzzle-container tree">
       <div class="tree-loader ajax"><img src="{{ request.static_url('electric_slide:static/img/ajax-loader.gif' )}}" class="tree-loader ajax"></div>
+      <div class="tree-error ajax"><img src="{{ request.static_url('electric_slide:static/img/oops.png' )}}"></div>
       <!-- data-coords in (y,x) order -->
       <div class="tile" data-coords="1"><span>1</span></div>
       <div class="tile" data-coords="2"><span>2</span></div>
