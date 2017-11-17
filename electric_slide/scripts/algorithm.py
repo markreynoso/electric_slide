@@ -1,6 +1,6 @@
 """Algorithms for the AI of solving a sliding puzzle."""
 
-from electric_slide.scripts.priority_q import PriorityQ, Node
+from electric_slide.scripts.priority_q import Node, PriorityQ
 
 
 def manhattan_distance(board_state, size=3):
@@ -15,7 +15,10 @@ def manhattan_distance(board_state, size=3):
 
 
 def a_star(starting_state, heuristic=manhattan_distance):
-    """Find a solution path by exploring possible boards based on heuristic value and path length."""
+    """Find a solution path by exploring possible boards.
+
+    Based on heuristic value and path length.
+    """
     available = PriorityQ()
     curr = Node(starting_state, None, None)
     visited = [curr]
@@ -37,7 +40,10 @@ def a_star(starting_state, heuristic=manhattan_distance):
 
 
 def greedy_pure_search(starting_state, heuristic=manhattan_distance):
-    """Find a solution path by exploring possible boards based on heuristic value only."""
+    """Find solution path by exploring possible boards.
+
+    Based on heuristic value only.
+    """
     available = PriorityQ()
     curr = Node(starting_state, None, None)
     visited = [curr]

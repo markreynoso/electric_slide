@@ -1,6 +1,7 @@
 """Various tests for state_almanac_generator.py."""
 
 from electric_slide.scripts.state_almanac_generator import generate_unique_states_from_sets
+
 import pytest
 
 
@@ -30,7 +31,10 @@ def test_dict_entries_are_correct_type(almanac):
 
 def test_sets_are_correct_length(almanac):
     """Test that each set of states contains the expected number of states."""
-    correct_num_of_states = [1, 2, 4, 8, 16, 20, 39, 62, 116, 152, 286, 396, 748, 1024, 1893, 2512, 4485, 5638, 9529, 10878, 16993, 17110, 23952, 20224, 24047, 15578, 14560, 6274, 3910, 760, 221, 2]
+    correct_num_of_states = [1, 2, 4, 8, 16, 20, 39, 62, 116, 152, 286, 396,
+                             748, 1024, 1893, 2512, 4485, 5638, 9529, 10878,
+                             16993, 17110, 23952, 20224, 24047, 15578, 14560,
+                             6274, 3910, 760, 221, 2]
     total = 0
 
     for i in range(32):
