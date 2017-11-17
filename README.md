@@ -12,7 +12,7 @@
 ```
 $ git clone https://github.com/markreynoso/electric_slide.git
 ```
-- Once your dowload is complete, cd into the ```electric_slide``` repository:
+- Once your download is complete, cd into the ```electric_slide``` repository:
 ```
 $ cd electric_slide
 ```
