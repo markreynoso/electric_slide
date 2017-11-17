@@ -1,3 +1,10 @@
 [run]
 source = electric_slide
-omit = electric_slide/test*
+omit =
+    electric_slide/test*
+    electric_slide/__init__.py
+    electric_slide/models/__init__.py
+    electric_slide/models/meta.py
+    electric_slide/models/mymodel.py
+    electric_slide/scripts/__init__.py
+    electric_slide/scripts/initializedb.py
