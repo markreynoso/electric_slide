@@ -159,7 +159,7 @@ def testapp(request):
 
 
 def test_home_route_gets_200_status_code(testapp):
-    """Test that the home route gets 200 status code for user."""
+    """Test that the home route gets 200 status code."""
     response = testapp.get("/")
     assert response.status_code == 200
 
@@ -171,7 +171,7 @@ def test_home_route_has_three_sliding_puzzles(testapp):
 
 
 def test_data_route_gets_200_status_code(testapp):
-    """Test that the data route gets 200 status code for user."""
+    """Test that the data route gets 200 status code."""
     response = testapp.get("/data")
     assert response.status_code == 200
 
@@ -183,7 +183,7 @@ def test_data_route_has_three_charts(testapp):
 
 
 def test_about_route_gets_200_status_code(testapp):
-    """Test that the about route gets 200 status code for user."""
+    """Test that the about route gets 200 status code."""
     response = testapp.get("/about")
     assert response.status_code == 200
 
@@ -195,7 +195,7 @@ def test_about_route_has_four_profile_cards(testapp):
 
 
 def test_nick_route_gets_200_status_code(testapp):
-    """Test that the nick route gets 200 status code for user."""
+    """Test that the nick route gets 200 status code."""
     response = testapp.get("/nick")
     assert response.status_code == 200
 
@@ -205,3 +205,87 @@ def test_nick_route_has_three_sliding_puzzles(testapp):
     response = testapp.get("/nick")
     assert len(response.html.find_all('div', 'puzzle-container')) == 3
     assert 'nick' in str(response.html.find('div', 'tile').find('img'))
+
+
+def test_invalid_route_goes_to_404_page(testapp):
+    """Test that the invalid route goes to 404 page."""
+    response = testapp.get("/fun", status=404)
+    assert '404' in str(response.html.find('h1'))
+
+
+def test_states_data_route_gets_200_status_code(testapp):
+    """Test that the states data route gets 200 status code."""
+    response = testapp.get("/api/data/states")
+    assert response.status_code == 200
+
+
+def test_states_data_route_responds_with_json(testapp):
+    """Test that the states data route returns a JSON file."""
+    import json
+    response = testapp.get("/api/data/states")
+    assert json.loads(response.text) == response.json
+
+
+def test_solving_data_route_gets_200_status_code(testapp):
+    """Test that the solving data route gets 200 status code."""
+    response = testapp.get("/api/data/solve")
+    assert response.status_code == 200
+
+
+def test_solving_data_route_responds_with_json(testapp):
+    """Test that the solving data route returns a JSON file."""
+    import json
+    response = testapp.get("/api/data/solve")
+    assert json.loads(response.text) == response.json
+
+
+def test_shuffle_route_gets_200_status_code(testapp):
+    """Test that the shuffle route gets 200 status code."""
+    response = testapp.get("/api/shuffle")
+    assert response.status_code == 200
+
+
+def test_shuffle_route_responds_with_json(testapp):
+    """Test that the shuffle route returns a JSON file."""
+    import json
+    response = testapp.get("/api/shuffle")
+    assert json.loads(response.text) == response.json
+
+
+def test_tree_solve_route_gets_200_status_code(testapp):
+    """Test that the tree solving route gets 200 status code."""
+    response = testapp.get("/api/solve/tree?state=[[1,2,3],[4,5,6],[9,7,8]]")
+    assert response.status_code == 200
+
+
+def test_tree_solve_route_responds_with_json(testapp):
+    """Test that the tree solving route returns a JSON file."""
+    import json
+    response = testapp.get("/api/solve/tree?state=[[1,2,3],[4,5,6],[9,7,8]]")
+    assert json.loads(response.text) == response.json
+
+
+def test_greedy_solve_route_gets_200_status_code(testapp):
+    """Test that the greedy solving route gets 200 status code."""
+    response = testapp.get("/api/solve/greedy?state=[[1,2,3],[4,5,6],[9,7,8]]")
+    assert response.status_code == 200
+
+
+def test_greedy_solve_route_responds_with_json(testapp):
+    """Test that the greedy solving route returns a JSON file."""
+    import json
+    response = testapp.get("/api/solve/greedy?state=[[1,2,3],[4,5,6],[9,7,8]]")
+    assert json.loads(response.text) == response.json
+
+
+def test_astar_solve_route_gets_200_status_code(testapp):
+    """Test that the astar solving route gets 200 status code."""
+    response = testapp.get("/api/solve/astar?state=[[1,2,3],[4,5,6],[9,7,8]]")
+    assert response.status_code == 200
+
+
+def test_astar_solve_route_responds_with_json(testapp):
+    """Test that the astar solving route returns a JSON file."""
+    import json
+    response = testapp.get("/api/solve/astar?state=[[1,2,3],[4,5,6],[9,7,8]]")
+    assert json.loads(response.text) == response.json
