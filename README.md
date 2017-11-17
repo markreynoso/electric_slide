@@ -2,10 +2,13 @@
 
 **Authors**: [Nathan Moore](https://github.com/nathancmoore), [Mark Reynoso](https://github.com/markreynoso), [Megan Flood](https://github.com/musflood), [Joseph Kim](https://github.com/jjskim)
 
-**Version**: 0.0.1
+**Version**: 1.0.0
 
 ## Overview
 ```electric_slide``` implements artificial intelligence and machine learning to efficiently solve the classic [sliding puzzle.](https://en.wikipedia.org/wiki/Sliding_puzzle)
+
+## Website
+[Check it out](https://electric-slide.herokuapp.com)
 
 ## Getting Started
 - Clone down the repository to your local machine:
