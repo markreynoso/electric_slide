@@ -148,7 +148,7 @@ function buildTimeScatterChart(rawData) {
 
         data: {
             datasets: [{
-                label: 'Greedy Algoritm',
+                label: 'Greedy Best-First',
                 fill: false,
                 borderWidth: 1,
                 borderColor: 'rgb(0, 0, 0)',
@@ -158,7 +158,7 @@ function buildTimeScatterChart(rawData) {
                 data: greedyData,
                 spanGaps: false
             }, {
-                label: 'A* Algoritm',
+                label: 'A* Algorithm',
                 fill: false,
                 borderWidth: 1,
                 borderColor: 'rgb(227, 27, 38)',
@@ -253,7 +253,7 @@ function buildMovesScatterChart(rawData) {
 
         data: {
             datasets: [{
-                label: 'Greedy Algoritm',
+                label: 'Greedy Best-First',
                 fill: false,
                 borderWidth: 1,
                 borderColor: 'rgb(0, 0, 0)',
@@ -263,7 +263,7 @@ function buildMovesScatterChart(rawData) {
                 data: greedyData,
                 spanGaps: false
             }, {
-                label: 'A* Algoritm',
+                label: 'A* Algorithm',
                 fill: false,
                 showLine: false,
                 borderColor: 'rgb(227, 27, 38)',
