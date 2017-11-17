@@ -149,10 +149,59 @@ def test_solve_greedy_returns_dict_with_key_solution(dummy_request):
     assert state_list['solution']
 
 
-# def test_solve_astar_returns_list_of_lists_len_3(dummy_request):
-#     """Test solve astar returns list of lists length 3."""
-#     from electric_slide.views.default import solve_astar
-#     dummy_request.params = {'state': "[[4, 3, 5], [2, 9, 1], [7, 8, 6]]"}
-#     state_list = solve_astar(dummy_request)
-#     for state in state_list['solution']:
-#         assert len(state) == 3
+@pytest.fixture(scope="session")
+def testapp(request):
+    """Functional test for app."""
+    from webtest import TestApp
+    from electric_slide import main
+
+    return TestApp(main({}))
+
+
+def test_home_route_gets_200_status_code(testapp):
+    """Test that the home route gets 200 status code for user."""
+    response = testapp.get("/")
+    assert response.status_code == 200
+
+
+def test_home_route_has_three_sliding_puzzles(testapp):
+    """Test that the home route has three sliding puzzles."""
+    response = testapp.get("/")
+    assert len(response.html.find_all('div', 'puzzle-container')) == 3
+
+
+def test_data_route_gets_200_status_code(testapp):
+    """Test that the data route gets 200 status code for user."""
+    response = testapp.get("/data")
+    assert response.status_code == 200
+
+
+def test_data_route_has_three_charts(testapp):
+    """Test that the data route has three charts."""
+    response = testapp.get("/data")
+    assert len(response.html.find_all('canvas')) == 3
+
+
+def test_about_route_gets_200_status_code(testapp):
+    """Test that the about route gets 200 status code for user."""
+    response = testapp.get("/about")
+    assert response.status_code == 200
+
+
+def test_about_route_has_four_profile_cards(testapp):
+    """Test that the about route has four profile cards."""
+    response = testapp.get("/about")
+    assert len(response.html.find_all('div', 'card')) == 4
+
+
+def test_nick_route_gets_200_status_code(testapp):
+    """Test that the nick route gets 200 status code for user."""
+    response = testapp.get("/nick")
+    assert response.status_code == 200
+
+
+def test_nick_route_has_three_sliding_puzzles(testapp):
+    """Test that the nick route has three sliding puzzles of nick."""
+    response = testapp.get("/nick")
+    assert len(response.html.find_all('div', 'puzzle-container')) == 3
+    assert 'nick' in str(response.html.find('div', 'tile').find('img'))
