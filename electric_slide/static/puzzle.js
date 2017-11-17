@@ -5,15 +5,18 @@ let solutionGreedy, solutionAstar, solutionTree;
 let startingState = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
 
 function greedySolve() {
-    $('.greedy-loader').show()
+    $('.greedy-loader').show();
     $.get({
         url: '/api/solve/greedy',
         data: {'state': JSON.stringify(startingState)},
         success: function(data) {
             solutionGreedy = data['solution']
-            console.log(solutionGreedy)
-            $('.greedy-loader').hide()
+            $('.greedy-loader').hide();
             greedyTimer();
+        },
+        error: function(data) {
+            $('.greedy-loader').hide();
+            $('.greedy-error').show();
         }
     });
 }
@@ -26,24 +29,30 @@ function astarSolve() {
         data: {'state': JSON.stringify(startingState)},
         success: function(data) {
             solutionAstar = data['solution']
-            console.log(solutionAstar)
-            $('.astar-loader').hide()
+            $('.astar-loader').hide();
             astarTimer();
+        },
+        error: function(data) {
+            $('.astar-loader').hide();
+            $('.astar-error').show();
         }
     });
 }
 
 
 function treeSolve() {
-    $('.tree-loader').show()
+    $('.tree-loader').show();
     $.get({
         url: '/api/solve/tree',
         data: {'state': JSON.stringify(startingState)},
         success: function(data) {
             solutionTree = data['solution']
-            console.log(solutionTree)
-            $('.tree-loader').hide()
+            $('.tree-loader').hide();
             treeTimer();
+        },
+        error: function(data) {
+            $('.tree-loader').hide();
+            $('.tree-error').show();
         }
     });
 }
@@ -51,14 +60,16 @@ function treeSolve() {
 
 function shuffle() {
     $.get('/api/shuffle', function(data) {
+        $('.greedy-error').hide();
+        $('.astar-error').hide();
+        $('.tree-error').hide();
         startingState = data['shuffle']
         startBoard(startingState);
-        console.log(startingState);
-    }).then(console.log(startingState));
+    });
 }
 
 
-function startBoard(state){
+function startBoard(state) {
     for (var i = 0; i < 3; i++) {
         for (var j = 0; j < 3; j++) {
             $("div").find("[data-coords='" + state[i][j] + "']").attr('coords', '' + i + j)
@@ -84,47 +95,46 @@ function treeTimer() {
 
 function solveGreedy(interval) {
     if (solutionGreedy.length > 1) {
-        solutionGreedy.shift()
+        solutionGreedy.shift();
         for (var i = 0; i < 3; i++) {
             for (var j = 0; j < 3; j++) {
                 $(".greedy").find("[data-coords='" + solutionGreedy[0][i][j] + "']").attr('coords', '' + i + j)
             }
         }
     } else {
-        clearInterval(interval)
+        clearInterval(interval);
     }
 }
 
 
 function solveAstar(interval) {
     if (solutionAstar.length > 1) {
-        solutionAstar.shift()
+        solutionAstar.shift();
         for (var i = 0; i < 3; i++) {
             for (var j = 0; j < 3; j++) {
                 $(".astar").find("[data-coords='" + solutionAstar[0][i][j] + "']").attr('coords', '' + i + j)
             }
         }
     } else {
-        clearInterval(interval)
+        clearInterval(interval);
     }
 }
 
 
 function solveTree(interval) {
     if (solutionTree.length > 1) {
-        solutionTree.shift()
+        solutionTree.shift();
         for (var i = 0; i < 3; i++) {
             for (var j = 0; j < 3; j++) {
                 $(".tree").find("[data-coords='" + solutionTree[0][i][j] + "']").attr('coords', '' + i + j)
             }
         }
     } else {
-        clearInterval(interval)
+        clearInterval(interval);
     }
 }
 
 
-// startBoard(startingState);
 startBoard([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
 
 
