@@ -48,7 +48,7 @@ def test_path_from_second_node_is_two_long(n1):
 
 
 def test_path_from_second_node_is_its_state_and_parent_state(n0, n1):
-    """Test that the path from the second Node is its own state then the parent state."""
+    """Test path from the second Node is its own state then parent state."""
     assert n1.path()[0] == n1.state
     assert n1.path()[1] == n0.state
 
@@ -97,7 +97,10 @@ def test_find_all_legal_moves_for_open_side(n1):
 
 def test_find_all_legal_moves_for_open_center(chain7):
     """Test that all legal moves are found for an open center."""
-    assert sorted(chain7.legal_moves()) == sorted([(1, 2), (2, 1), (3, 2), (2, 3)])
+    assert sorted(chain7.legal_moves()) == sorted([(1, 2),
+                                                   (2, 1),
+                                                   (3, 2),
+                                                   (2, 3)])
 
 
 def test_constructing_a_priority_q_is_empty():
@@ -130,7 +133,7 @@ def test_pushing_different_priorities_adds_to_queue(empty_queue):
     assert q.values == {1: ['a'], 2: ['b']}
 
 
-def test_pushing_different_many_values_to_priorities_adds_to_queue(empty_queue):
+def test_pushing_different_many_values_to_priorities_add_to_queue(empty_queue):
     """Test that a pushing values to diff priorities adds all values."""
     q = empty_queue
     q.push('a', 1)

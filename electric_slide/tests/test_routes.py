@@ -1,4 +1,4 @@
-"""."""
+"""Test routes for electric slide app."""
 from pyramid.testing import DummyRequest
 
 import pytest
@@ -247,7 +247,7 @@ def test_solving_data_route_responds_with_json(testapp):
 
 
 def test_solving_data_route_has_all_algorithms_at_each_complexity(testapp):
-    """Test that the solving data route has all algorithms at each complexity."""
+    """Test solving data route has all algorithms at each complexity."""
     response = testapp.get("/api/data/solve")
     assert len(response.json) == 32
     assert 'tree' in response.json['0']
@@ -354,7 +354,7 @@ def test_greedy_solve_route_responds_with_json(testapp):
 
 
 def test_greedy_solve_route_returns_solution(testapp):
-    """Test that the greedy solving route returns the solution from the greedy."""
+    """Test greedy solving route returns the solution from the greedy."""
     response = testapp.get("/api/solve/greedy?state=[[1,2,3],[4,5,6],[9,7,8]]")
     assert response.json['solution'] == [[[1, 2, 3], [4, 5, 6], [9, 7, 8]],
                                          [[1, 2, 3], [4, 5, 6], [7, 9, 8]],
@@ -375,7 +375,7 @@ def test_astar_solve_route_responds_with_json(testapp):
 
 
 def test_astar_solve_route_returns_solution(testapp):
-    """Test that the astar solving route returns the solution from the astar."""
+    """Test astar solving route returns the solution from the astar."""
     response = testapp.get("/api/solve/astar?state=[[1,2,3],[4,5,6],[9,7,8]]")
     assert response.json['solution'] == [[[1, 2, 3], [4, 5, 6], [9, 7, 8]],
                                          [[1, 2, 3], [4, 5, 6], [7, 9, 8]],

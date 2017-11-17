@@ -14,7 +14,8 @@ class PracticeBoard(object):
 
         flat = [val for row in state for val in row]
         empty = flat.index(9)
-        coords = (empty % self.practice_size + 1, empty // self.practice_size + 1)
+        coords = (empty % self.practice_size + 1,
+                  empty // self.practice_size + 1)
         self.practice_open_cell_coords = coords
 
     def practice_slide(self, coords):
@@ -104,7 +105,7 @@ class Board(object):
             self.legal_moves.append(right)
 
     def _make_random_move(self):
-        """Random move. Disallow moves which would result in a previous state."""
+        """Random move. Disallow moves which result in a previous state."""
         invalid_move = True
         while invalid_move:
             check_board = PracticeBoard(self.state)
