@@ -70,5 +70,5 @@ def diversify_comparator():  # pragma: no cover
         diversify_state_sampling('a_star_data.json', a_star, c, state_almanac)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     diversify_comparator()
