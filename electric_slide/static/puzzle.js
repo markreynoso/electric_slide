@@ -61,7 +61,7 @@ function shuffle() {
 function startBoard(state){
     for (var i = 0; i < 3; i++) {
         for (var j = 0; j < 3; j++) {
-            $("div").find("[data-coords='" + state[i][j] + "']").attr('id', '' + i + j)
+            $("div").find("[data-coords='" + state[i][j] + "']").attr('coords', '' + i + j)
         }
     }
 }
@@ -87,7 +87,7 @@ function solveGreedy(interval) {
         solutionGreedy.shift()
         for (var i = 0; i < 3; i++) {
             for (var j = 0; j < 3; j++) {
-                $(".greedy").find("[data-coords='" + solutionGreedy[0][i][j] + "']").attr('id', '' + i + j)
+                $(".greedy").find("[data-coords='" + solutionGreedy[0][i][j] + "']").attr('coords', '' + i + j)
             }
         }
     } else {
@@ -101,7 +101,7 @@ function solveAstar(interval) {
         solutionAstar.shift()
         for (var i = 0; i < 3; i++) {
             for (var j = 0; j < 3; j++) {
-                $(".astar").find("[data-coords='" + solutionAstar[0][i][j] + "']").attr('id', '' + i + j)
+                $(".astar").find("[data-coords='" + solutionAstar[0][i][j] + "']").attr('coords', '' + i + j)
             }
         }
     } else {
@@ -115,7 +115,7 @@ function solveTree(interval) {
         solutionTree.shift()
         for (var i = 0; i < 3; i++) {
             for (var j = 0; j < 3; j++) {
-                $(".tree").find("[data-coords='" + solutionTree[0][i][j] + "']").attr('id', '' + i + j)
+                $(".tree").find("[data-coords='" + solutionTree[0][i][j] + "']").attr('coords', '' + i + j)
             }
         }
     } else {
