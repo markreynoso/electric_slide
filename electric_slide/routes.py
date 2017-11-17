@@ -13,3 +13,4 @@ def includeme(config):
     config.add_route('tree', '/api/solve/tree')
     config.add_route('greedy', '/api/solve/greedy')
     config.add_route('astar', '/api/solve/astar')
+    config.add_route('nick', '/nick')

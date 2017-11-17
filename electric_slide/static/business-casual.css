@@ -100,47 +100,47 @@ hr.divider {
   border-radius: 2px;
 }
 
-[id = '00'] {
+[coords = '00'] {
   left: 1.5%;
   top: 1.5%;
 }
 
-[id = '01'] {
+[coords = '01'] {
   left: 34.5%;
   top: 1.5%;
 }
 
-[id = '02'] {
+[coords = '02'] {
   left: 68%;
   top: 1.5%;
 }
 
-[id = '10'] {
+[coords = '10'] {
   left: 1.5%;
   top: 34.5%;
 }
 
-[id = '11'] {
+[coords = '11'] {
   left: 34.5%;
   top: 34.5%;
 }
 
-[id = '12'] {
+[coords = '12'] {
   left: 67.5%;
   top: 34.5%;
 }
 
-[id = '20'] {
+[coords = '20'] {
   left: 1.5%;
   top: 67.5%;
 }
 
-[id = '21'] {
+[coords = '21'] {
   left: 34.5%;
   top: 67.5%;
 }
 
-[id = '22'] {
+[coords = '22'] {
   left: 67.5%;
   top: 67.5%;
 }
@@ -189,6 +189,10 @@ hr.divider {
 
 .ajax img {
   width: 10vw;
+}
+
+.tile img {
+  width: 100%
 }
 
 @media (max-width: 775px) {
