@@ -226,6 +226,13 @@ def test_states_data_route_responds_with_json(testapp):
     assert json.loads(response.text) == response.json
 
 
+def test_states_data_route_has_quantities_for_all_complexities(testapp):
+    """Test that the states data route has ints for all complexities."""
+    response = testapp.get("/api/data/states")
+    assert len(response.json) == 32
+    assert isinstance(response.json['0'], int)
+
+
 def test_solving_data_route_gets_200_status_code(testapp):
     """Test that the solving data route gets 200 status code."""
     response = testapp.get("/api/data/solve")
@@ -237,6 +244,57 @@ def test_solving_data_route_responds_with_json(testapp):
     import json
     response = testapp.get("/api/data/solve")
     assert json.loads(response.text) == response.json
+
+
+def test_solving_data_route_has_all_algorithms_at_each_complexity(testapp):
+    """Test that the solving data route has all algorithms at each complexity."""
+    response = testapp.get("/api/data/solve")
+    assert len(response.json) == 32
+    assert 'tree' in response.json['0']
+    assert 'greedy' in response.json['0']
+    assert 'a_star' in response.json['0']
+
+
+def test_solving_data_route_has_data_for_tree_algorithm(testapp):
+    """Test that the solving data route has data for the tree."""
+    response = testapp.get("/api/data/solve")
+    assert 'time' in response.json['0']['tree']
+    assert 'moves' in response.json['0']['tree']
+
+
+def test_solving_data_route_tree_algorithm_data_is_list(testapp):
+    """Test that the solving data route has tree data as a list."""
+    response = testapp.get("/api/data/solve")
+    assert isinstance(response.json['0']['tree']['time'], list)
+    assert isinstance(response.json['0']['tree']['moves'], list)
+
+
+def test_solving_data_route_has_data_for_greedy_algorithm(testapp):
+    """Test that the solving data route has data for the greedy."""
+    response = testapp.get("/api/data/solve")
+    assert 'time' in response.json['0']['greedy']
+    assert 'moves' in response.json['0']['greedy']
+
+
+def test_solving_data_route_greedy_algorithm_data_is_list(testapp):
+    """Test that the solving data route has greedy data as a list."""
+    response = testapp.get("/api/data/solve")
+    assert isinstance(response.json['0']['greedy']['time'], list)
+    assert isinstance(response.json['0']['greedy']['moves'], list)
+
+
+def test_solving_data_route_has_data_for_astar_algorithm(testapp):
+    """Test that the solving data route has data for the astar."""
+    response = testapp.get("/api/data/solve")
+    assert 'time' in response.json['0']['a_star']
+    assert 'moves' in response.json['0']['a_star']
+
+
+def test_solving_data_route_astar_algorithm_data_is_list(testapp):
+    """Test that the solving data route has astar data as a list."""
+    response = testapp.get("/api/data/solve")
+    assert isinstance(response.json['0']['a_star']['time'], list)
+    assert isinstance(response.json['0']['a_star']['moves'], list)
 
 
 def test_shuffle_route_gets_200_status_code(testapp):
@@ -252,6 +310,15 @@ def test_shuffle_route_responds_with_json(testapp):
     assert json.loads(response.text) == response.json
 
 
+def test_shuffle_route_sends_a_single_random_board(testapp):
+    """Test that the shuffle route sends a single random board."""
+    response = testapp.get("/api/shuffle")
+    assert len(response.json['shuffle']) == 3
+    assert len(response.json['shuffle'][0]) == 3
+    assert len(response.json['shuffle'][1]) == 3
+    assert len(response.json['shuffle'][2]) == 3
+
+
 def test_tree_solve_route_gets_200_status_code(testapp):
     """Test that the tree solving route gets 200 status code."""
     response = testapp.get("/api/solve/tree?state=[[1,2,3],[4,5,6],[9,7,8]]")
@@ -263,6 +330,14 @@ def test_tree_solve_route_responds_with_json(testapp):
     import json
     response = testapp.get("/api/solve/tree?state=[[1,2,3],[4,5,6],[9,7,8]]")
     assert json.loads(response.text) == response.json
+
+
+def test_tree_solve_route_returns_solution(testapp):
+    """Test that the tree solving route returns the solution from the tree."""
+    response = testapp.get("/api/solve/tree?state=[[1,2,3],[4,5,6],[9,7,8]]")
+    assert response.json['solution'] == [[[1, 2, 3], [4, 5, 6], [7, 8, 9]],
+                                         [[1, 2, 3], [4, 5, 6], [7, 9, 8]],
+                                         [[1, 2, 3], [4, 5, 6], [7, 8, 9]]]
 
 
 def test_greedy_solve_route_gets_200_status_code(testapp):
@@ -278,6 +353,14 @@ def test_greedy_solve_route_responds_with_json(testapp):
     assert json.loads(response.text) == response.json
 
 
+def test_greedy_solve_route_returns_solution(testapp):
+    """Test that the greedy solving route returns the solution from the greedy."""
+    response = testapp.get("/api/solve/greedy?state=[[1,2,3],[4,5,6],[9,7,8]]")
+    assert response.json['solution'] == [[[1, 2, 3], [4, 5, 6], [9, 7, 8]],
+                                         [[1, 2, 3], [4, 5, 6], [7, 9, 8]],
+                                         [[1, 2, 3], [4, 5, 6], [7, 8, 9]]]
+
+
 def test_astar_solve_route_gets_200_status_code(testapp):
     """Test that the astar solving route gets 200 status code."""
     response = testapp.get("/api/solve/astar?state=[[1,2,3],[4,5,6],[9,7,8]]")
@@ -289,3 +372,11 @@ def test_astar_solve_route_responds_with_json(testapp):
     import json
     response = testapp.get("/api/solve/astar?state=[[1,2,3],[4,5,6],[9,7,8]]")
     assert json.loads(response.text) == response.json
+
+
+def test_astar_solve_route_returns_solution(testapp):
+    """Test that the astar solving route returns the solution from the astar."""
+    response = testapp.get("/api/solve/astar?state=[[1,2,3],[4,5,6],[9,7,8]]")
+    assert response.json['solution'] == [[[1, 2, 3], [4, 5, 6], [9, 7, 8]],
+                                         [[1, 2, 3], [4, 5, 6], [7, 9, 8]],
+                                         [[1, 2, 3], [4, 5, 6], [7, 8, 9]]]
