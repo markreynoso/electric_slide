@@ -13,9 +13,9 @@ def home_view(request):
 
 
 @view_config(route_name='nick', renderer='electric_slide:/templates/nick.jinja2')
-def home_view(request):
+def nick_view(request):
     """View for the secret nick page."""
-    return {'title': 'nick'}
+    return {'title': 'home'}
 
 
 @view_config(route_name='data', renderer='electric_slide:/templates/data.jinja2')
