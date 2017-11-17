@@ -1,14 +1,12 @@
 """Tests for the board module."""
 
-# from copy import deepcopy
-
-import pytest
+import json
 
 from random import choice
 
-import json
-
 from electric_slide.scripts.board import PracticeBoard
+
+import pytest
 
 
 @pytest.fixture
@@ -213,11 +211,14 @@ def test_constructed_pboard_has_correct_size():
 def test_pboard_determine_legal_moves_finds_all_moves():
     """Test that the legal moves are correctly determined in a pboard."""
     pb = PracticeBoard([[2, 5, 3], [1, 9, 6], [4, 7, 8]])
-    assert sorted(pb.determine_legal_moves()) == sorted([(2, 1), (2, 3), (1, 2), (3, 2)])
+    sorted_pb = sorted(pb.determine_legal_moves())
+    assert sorted_pb == sorted([(2, 1), (2, 3), (1, 2), (3, 2)])
     pb = PracticeBoard([[1, 2, 3], [7, 6, 9], [5, 4, 8]])
-    assert sorted(pb.determine_legal_moves()) == sorted([(3, 3), (3, 1), (2, 2)])
+    pb_sort = sorted(pb.determine_legal_moves())
+    assert pb_sort == sorted([(3, 3), (3, 1), (2, 2)])
     pb = PracticeBoard([[1, 2, 9], [5, 6, 3], [4, 7, 8]])
-    assert sorted(pb.determine_legal_moves()) == sorted([(2, 1), (3, 2)])
+    pb_sorted = sorted(pb.determine_legal_moves())
+    assert pb_sorted == sorted([(2, 1), (3, 2)])
 
 
 def test_practice_slide_returns_correctthing():
