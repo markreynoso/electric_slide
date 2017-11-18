@@ -1,0 +1,38 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+
+<div class="bg-faded p-4 my-4">
+  <hr class="divider">
+  <h2 class="text-center text-lg text-uppercase my-0"><strong>States</strong> per Complexity
+  </h2>
+  <hr class="divider">
+  <canvas id="statesChart"></canvas>
+  <br>
+  <p>The number of possible board states for each number of ideal moves from the solution of an 8-puzzle. The board states are categorized by the minimum number of ideal moves they are from the solution. Out of the 181,440 possible board states in a 8-puzzle, the majority of the states exist in the 18 to 27-move range. The number of ideal moves a state is from the solution defines the "complexity" of the state.</p>
+</div>
+
+<div class="bg-faded p-4 my-4">
+  <hr class="divider">
+  <h2 class="text-center text-lg text-uppercase my-0"><strong>Time</strong> to Solve Each Complexity
+  </h2>
+  <hr class="divider">
+  <canvas id="timeChart"></canvas>
+  <br>
+  <p>The average amount of time each method took to solve an 8-puzzle. Each method was timed as it solved random puzzles of varying complexity. The A* algorithm took much longer than the greedy best-first and decision tree, especially on higher-complexity puzzles. The greedy best-first took a shorter time, but was inconsistent. The decision tree consistently performed in a quick, linear manner. Bars indicate the first and third quartiles of the data.</p>
+  <p>Click the name of each method to remove it from the graph.</p>
+</div>
+
+<div class="bg-faded p-4 my-4">
+  <hr class="divider">
+  <h2 class="text-center text-lg text-uppercase my-0"><strong>Moves</strong> Taken for Each Complexity
+  </h2>
+  <hr class="divider">
+  <canvas id="movesChart"></canvas>
+  <br>
+  <p>The average number of moves each method used for its solution to an  8-puzzle. The number of moves made was measured for each method after it solved random puzzles of varying complexity. While both the A* algorithm and decision tree consistently got the optimal solution, the greedy best-first algorithm was inconsistent and generally came to a highly inefficient solution. Bars indicate the full range of the data.</p>
+  <p>Click the name of each method to remove it from the graph.</p>
+</div>
+
+{% endblock %}
+ 

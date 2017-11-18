@@ -1,0 +1,119 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+
+
+<div class="bg-faded p-4 my-4">
+  <div class="text-center mt-4">
+    <div class="text-heading text-muted text-lg">Welcome To</div>
+    <h1 class="my-2">Electric Slide</h1>
+    <div class="text-heading text-muted text-lg">
+      <strong>Solving a Slider Puzzle Though Machine Learning</strong>
+    </div>
+  </div>
+</div>
+
+<div class="bg-faded p-4 my-4">
+  <hr class="divider">
+  <h2 class="text-center text-lg text-uppercase my-0">Demonstration of the
+    <strong>ALGORITHMS</strong>
+  </h2>
+  <hr class="divider">
+  <div class="solve-btns">
+      <div class="solve-one text-uppercase my-0">
+        <p class="title text-lg text-heading">Greedy Best-First</p>
+        <p class="text-lowercase text-muted">Time: Fast <br>Accuracy: Low</p>
+      </div>
+      <div class="solve-one text-uppercase my-0">
+        <p class="title text-heading text-lg">A* Algorithm</p>
+        <p class="text-lowercase text-muted">Time: Slow <br>Accuracy: High</p>
+      </div>
+      <div class="solve-one text-uppercase my-0">
+        <p class="title text-heading text-lg">Decision Tree</p>
+        <p class="text-lowercase text-muted">Time: Fast <br>Accuracy: High</p>
+      </div>    </div>
+  <div class="puzzles">
+    <div class="puzzle-container greedy">
+      <div class="greedy-loader ajax"><img src="{{ request.static_url('electric_slide:static/img/ajax-loader.gif' )}}" class="greedy-loader ajax"></div>
+      <div class="greedy-error ajax"><img src="{{ request.static_url('electric_slide:static/img/oops.png' )}}"></div>
+      <!-- data-coords in (y,x) order -->
+      <div style="padding-top: 0;" class="tile" data-coords="1"><img src="{{ request.static_url('electric_slide:static/img/nick1.jpeg' )}}"></div>
+      <div style="padding-top: 0;" class="tile" data-coords="2"><img src="{{ request.static_url('electric_slide:static/img/nick2.jpeg' )}}"></div>
+      <div style="padding-top: 0;" class="tile" data-coords="3"><img src="{{ request.static_url('electric_slide:static/img/nick3.jpeg' )}}"></div>
+      <div style="padding-top: 0;" class="tile" data-coords="4"><img src="{{ request.static_url('electric_slide:static/img/nick4.jpeg' )}}"></div>
+      <div style="padding-top: 0;" class="tile" data-coords="5"><img src="{{ request.static_url('electric_slide:static/img/nick5.jpeg' )}}"></div>
+      <div style="padding-top: 0;" class="tile" data-coords="6"><img src="{{ request.static_url('electric_slide:static/img/nick6.jpeg' )}}"></div>
+      <div style="padding-top: 0;" class="tile" data-coords="7"><img src="{{ request.static_url('electric_slide:static/img/nick7.jpeg' )}}"></div>
+      <div style="padding-top: 0;" class="tile" data-coords="8"><img src="{{ request.static_url('electric_slide:static/img/nick8.jpeg' )}}"></div>
+      <div style="padding-top: 0;" class="tile-blank" data-coords="9"><span></span></div>
+    </div>
+    <div class="puzzle-container astar">
+      <div class="astar-loader ajax"><img src="{{ request.static_url('electric_slide:static/img/ajax-loader.gif' )}}"></div>
+      <div class="astar-error ajax"><img src="{{ request.static_url('electric_slide:static/img/oops.png' )}}"></div>
+      <!-- data-coords in (y,x) order -->
+      <div style="padding-top: 0;" class="tile" data-coords="1"><img src="{{ request.static_url('electric_slide:static/img/swagnick1.jpg' )}}"></div>
+      <div style="padding-top: 0;" class="tile" data-coords="2"><img src="{{ request.static_url('electric_slide:static/img/swagnick2.jpg' )}}"></div>
+      <div style="padding-top: 0;" class="tile" data-coords="3"><img src="{{ request.static_url('electric_slide:static/img/swagnick3.jpg' )}}"></div>
+      <div style="padding-top: 0;" class="tile" data-coords="4"><img src="{{ request.static_url('electric_slide:static/img/swagnick4.jpg' )}}"></div>
+      <div style="padding-top: 0;" class="tile" data-coords="5"><img src="{{ request.static_url('electric_slide:static/img/swagnick5.jpg' )}}"></div>
+      <div style="padding-top: 0;" class="tile" data-coords="6"><img src="{{ request.static_url('electric_slide:static/img/swagnick6.jpg' )}}"></div>
+      <div style="padding-top: 0;" class="tile" data-coords="7"><img src="{{ request.static_url('electric_slide:static/img/swagnick7.jpg' )}}"></div>
+      <div style="padding-top: 0;" class="tile" data-coords="8"><img src="{{ request.static_url('electric_slide:static/img/swagnick8.jpg' )}}"></div>
+      <div style="padding-top: 0;" class="tile-blank" data-coords="9"><span></span></div>
+    </div>
+    <div class="puzzle-container tree">
+      <div class="tree-loader ajax"><img src="{{ request.static_url('electric_slide:static/img/ajax-loader.gif' )}}" class="tree-loader ajax"></div>
+      <div class="tree-error ajax"><img src="{{ request.static_url('electric_slide:static/img/oops.png' )}}"></div>
+      <!-- data-coords in (y,x) order -->
+      <div style="padding-top: 0;" class="tile" data-coords="1"><img src="{{ request.static_url('electric_slide:static/img/realworldnick1.jpg' )}}"></div>
+      <div style="padding-top: 0;" class="tile" data-coords="2"><img src="{{ request.static_url('electric_slide:static/img/realworldnick2.jpg' )}}"></div>
+      <div style="padding-top: 0;" class="tile" data-coords="3"><img src="{{ request.static_url('electric_slide:static/img/realworldnick3.jpg' )}}"></div>
+      <div style="padding-top: 0;" class="tile" data-coords="4"><img src="{{ request.static_url('electric_slide:static/img/realworldnick4.jpg' )}}"></div>
+      <div style="padding-top: 0;" class="tile" data-coords="5"><img src="{{ request.static_url('electric_slide:static/img/realworldnick5.jpg' )}}"></div>
+      <div style="padding-top: 0;" class="tile" data-coords="6"><img src="{{ request.static_url('electric_slide:static/img/realworldnick6.jpg' )}}"></div>
+      <div style="padding-top: 0;" class="tile" data-coords="7"><img src="{{ request.static_url('electric_slide:static/img/realworldnick7.jpg' )}}"></div>
+      <div style="padding-top: 0;" class="tile" data-coords="8"><img src="{{ request.static_url('electric_slide:static/img/realworldnick8.jpg' )}}"></div>
+      <div style="padding-top: 0;" class="tile-blank" data-coords="9"><span></span></div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+  <div class="buttons">
+    <div class="solve-btns">
+      <div class="solve-one"><button id="greedy-button" class="btn btn-outline-danger puzzle-button">Solve</button></div>
+      <div class="solve-one"><button id="astar-button" class="btn btn-outline-danger puzzle-button">Solve</button></div>
+      <div class="solve-one"><button id="tree-button" class="btn btn-outline-danger puzzle-button">Solve</button></div>
+    </div>
+    <div class="clearfix"></div>
+    <hr>
+    <div class="solve-btns">
+      <div class="all-btn"><button id="shuffle-button" class="btn btn-outline-danger puzzle-button">Shuffle All</button></div>
+      <div class="all-btn"><button id="all-button" class="btn btn-outline-danger puzzle-button">Solve All</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="bg-faded p-4 my-4">
+  <hr class="divider">
+  <h2 class="text-center text-lg text-uppercase my-0">What is a
+    <strong>SLIDER PUZZLE</strong>
+  </h2>
+  <hr class="divider">
+  <p>Also known as an "8-puzzle," a 3x3 slider puzzle is a simple game with 8 tiles on a 3x3 grid.
+    Typically, the 8 tiles are either numbered 1-8 or form a picture when in order. The open tile space allows for adjacent tiles to slide into it.</p>
+  <p>The object of the game is to start from a scrambled state and, through sliding, to assemble the
+    picture or order the numbers. We refer to this as the solved board state.</p>
+  <p>The slider puzzle is simple and straightforward. It contains no random elements. It's simple for a casual player to solve the board, but not simple to identify the OPTIMAL solution. It is easy scalable and any given board state has a very limited set of moves (either 2, 3, or 4.) Slider puzzles are a great candidate to be solved by machine learning.</p>
+</div>
+
+<div class="bg-faded p-4 my-4">
+  <hr class="divider">
+  <h2 class="text-center text-lg text-uppercase my-0">What is
+    <strong>MACHINE LEARNING</strong>
+  </h2>
+  <hr class="divider">
+  <img class="img-fluid float-left mr-4 d-none d-lg-block" src="../static/img/facial-recognition.png" alt="">
+  <p><a class="font-weight-bold text-danger" href="https://en.wikipedia.org/wiki/Machine_learning" target="_blank" title="Wikipedia Article">Machine Learning</a> is a form of programming in which the computer is given basic parameters regarding the desired task and outcome, but is not programmed for a specific task. The program must "learn" to accomplish its "goal."</p><p>One common example of this is facial recognition software. Facebook automatically scans pictures users upload, and uses programs trained with machine learning to attempt to identify the faces of the people in the picture. Facebook users (unwittingly) help to train the machine by tagging themselves and their friends in their pictures. Each of those tagged faces is fed into the program, improving its accuracy.</p><p>Our approach to the slider puzzle began with programming a functional game board. Next, we attacked the problem of solving the board from three angles:</p><p>The first of these was to generate a <a class="font-weight-bold text-danger" href="https://en.wikipedia.org/wiki/Decision_tree" target="_blank" title="Wikipedia Article">Decision Tree</a>. This takes the form of an almanac of all possible board states, collated with how many ideal moves each state is from being solved (the state's "complexity.") Once the almanac is assembled, solving the board (and solving it "perfectly,") is as simple as selecting only moves which result in a state of decreased complexity.</p><p>Our second approach was to implement the <a class="font-weight-bold text-danger" href="https://en.wikipedia.org/wiki/A*_search_algorithm" target="_blank" title="Wikipedia Article">A*</a> (prounounced "A-Star") search algorithm. Our application of A* treats attempts to find the shortest path to a solved state, at each step checking branching paths from its current best path and adjusting the current best path accordingly. It makes this determination by use of <a class="font-weight-bold text-danger" href="https://en.wikipedia.org/wiki/Heuristic_(computer_science)" target="_blank" title="Wikipedia Article">heuristics.</a></p><p>Our third method was to implement the <a class="font-weight-bold text-danger" href="https://en.wikipedia.org/wiki/Best-first_search" target="_blank" title="Wikipedia Article">Greedy Best-First</a> search algorithm, or simply "Greedy." The Greedy algorithm operates in a similar way to the A* algorithm, but without regard to the path it has already taken. It simply looks at its current state and makes the apparent best move (even if it isn't!) The result of this is that the greedy algorithm's solution is almost always far from ideal.</p>
+</div>
+
+{% endblock %}
+
